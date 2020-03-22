@@ -3,30 +3,24 @@
 .input {
   max-width: 320px;
 
-  &::after {
-    display: table;
-    content: "";
-    clear: both;
-  }
-
   &__label {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-transform: uppercase;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: bold;
     font-size: 12px;
     line-height: 15px;
-    color: $dark100;
+    margin-bottom: 5px;
   }
-
+  
   &__title {
-    float: left;
+    color: $dark100;
+    font-weight: bold;
   }
 
   &__description {
-    float: right;
-    font-weight: normal;
     color: $dark50;
   }
 
@@ -40,5 +34,11 @@
     box-sizing: border-box;
     border-radius: 4px;
     padding-left: 15px;
+
+    &::placeholder {
+      font-family: Montserrat;
+      font-size: 14px;
+      color: $dark25;
+    }
   }
 }

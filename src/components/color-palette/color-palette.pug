@@ -1,3 +1,16 @@
 include ./color-sample/color-sample.pug
+-
+  var data = [
+    {title: "Dark Shade 100%", colorValue: "#1f2041", colorName: "#1f2041"},
+    {title: "Dark Shade 75%", colorValue: "rgba(31, 32, 65, 0.75)", colorName: "#1f2041"},
+    {title: "Dark Shade 50%", colorValue: "rgba(31, 32, 65, 0.5)", colorName: "#1f2041"},
+    {title: "Dark Shade 25%", colorValue: "rgba(31, 32, 65, 0.25)", colorName: "#1f2041"},
+    {title: "Dark Shade 5%", colorValue: "rgba(31, 32, 65, 0.05)", colorName: "#1f2041"},
+    {title: "Purple", colorValue: "#bc9cff", colorName: "#bc9cff"},
+    {title: "Green", colorValue: "#6fcf97", colorName: "#6fcf97"},
+  ]
 .color-palette
-  +color-sample({title: "Dark Shade 100%", color: "#1f2041"})
+  each item in data
+    .color-palette__item
+      +color-sample({title: item.title, colorValue: item.colorValue, colorName: item.colorName})
+
