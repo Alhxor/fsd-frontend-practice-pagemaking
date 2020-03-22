@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Hellow FSD!
-  body
+extends layout.pug
+include components/input/input.pug
+block header
+  h1 Components preview
+block content
+  include components/color-palette/color-palette.pug
+  +input({type: "email", id: "email", placeholder: "Email", title: "Text field", description: "default"})
+block footer

@@ -1,0 +1,41 @@
+$path: "./assets/fonts/";
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("#{$path}Montserrat-Regular.eot");
+  src: url("#{$path}Montserrat-Regular.woff") format("woff"),
+    url("#{$path}Montserrat-Regular.ttf") format("truetype"),
+    url("#{$path}Montserrat-Regular.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("#{$path}Montserrat-Bold.eot");
+  src: url("#{$path}Montserrat-Bold.woff") format("woff"),
+    url("#{$path}Montserrat-Bold.ttf") format("truetype"),
+    url("#{$path}Montserrat-Bold.svg") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("#{$path}Quicksand-Regular.eot");
+  src: url("#{$path}Quicksand-Regular.woff") format("woff"),
+    url("#{$path}Quicksand-Regular.ttf") format("truetype"),
+    url("#{$path}Quicksand-Regular.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("#{$path}Quicksand-Bold.eot");
+  src: url("#{$path}Quicksand-Bold.woff") format("woff"),
+    url("#{$path}Quicksand-Bold.ttf") format("truetype"),
+    url("#{$path}Quicksand-Bold.svg") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}

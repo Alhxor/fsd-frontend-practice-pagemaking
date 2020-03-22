@@ -1,0 +1,44 @@
+@import "@styles/colors.scss";
+
+.input {
+  max-width: 320px;
+
+  &::after {
+    display: table;
+    content: "";
+    clear: both;
+  }
+
+  &__label {
+    display: block;
+    text-transform: uppercase;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    color: $dark100;
+  }
+
+  &__title {
+    float: left;
+  }
+
+  &__description {
+    float: right;
+    font-weight: normal;
+    color: $dark50;
+  }
+
+  &__field {
+    width: 320px;
+    height: 44px;
+    line-height: 18px;
+    font-size: 14px;
+    background: #ffffff;
+    border: 1px solid $dark25;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding-left: 15px;
+  }
+}

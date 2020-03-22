@@ -1,0 +1,33 @@
+.color-sample {
+  max-width: 320px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  
+  &__color {
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+  }
+  
+  &__info {
+    display: flex;
+    flex-flow: column wrap;
+    justify-items: center;
+    margin-left: 20px;
+  }
+
+  &__title,
+  &__value {
+    font-family: Quicksand, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 29px;
+    color: $dark100;
+  }
+
+  &__value {
+    font-weight: normal;
+  }
+}

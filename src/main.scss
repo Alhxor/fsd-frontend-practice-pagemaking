@@ -1,5 +1,24 @@
-$bg: #e5e5e5;
+@import "@styles/fonts.scss";
+@import "@styles/colors.scss";
+@import "./components/color-palette/color-palette.scss";
+@import "./components/input/input.scss";
 
 html {
-  background-color: $bg;
+  font-family: Montserrat, sans-serif;
+  font-weight: normal;
+}
+
+h1 {
+  font-family: Quicksand, sans-serif;
+  font-weight: normal;
+}
+
+body {
+  text-align: left;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+div {
+  // border: 1px solid crimson;
 }
