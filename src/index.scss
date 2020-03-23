@@ -17,8 +17,40 @@ body {
   text-align: left;
   padding: 1rem;
   margin: 0 auto;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+
+  color: $dark75;
 }
 
-div {
-  // border: 1px solid crimson;
+.heading {
+  font-family: Quicksand, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  color: $dark100;
+}
+
+h1 {
+  @extend .heading;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+h2 {
+  @extend .heading;
+  font-size: 19px;
+  line-height: 24px;
+}
+
+h3 {
+  @extend .heading;
+  font-family: Montserrat;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
 }

@@ -1,0 +1,29 @@
+@import "@styles/colors.scss";
+
+.text-samples {
+  flex-basis: 50%;
+  min-width: 280px;
+}
+
+.text-sample {
+  display: flex;
+  flex-flow: row nowrap;
+  max-width: 400px;
+  margin-bottom: 50px;
+}
+
+.text-sample__note, .text-sample__value {
+  margin: 0;
+  padding: 0;
+}
+
+.text-sample__note {
+  width: 50px;
+  text-align: right;
+  color: $dark25;
+  margin-right: 30px;
+}
+
+.text-sample__value {
+  width: 330px;
+}

@@ -1,0 +1,16 @@
+mixin text-sample(props)
+  .text-sample
+    #{props.tag}.text-sample__note= props.note
+    #{props.tag}.text-sample__value= props.value
+
+-
+  var data = [
+    {tag: "h1", note: "H1", value: "This one is the sub-section or widget title"},
+    {tag: "h2", note: "H2", value: "Next one is the item title inside widgets"},
+    {tag: "h3", note: "H3", value: "This is a label or CTA text"},
+    {tag: "span", note: "Body", value: "This is the body text which is used for most of the design, like paragraphs, lists, etc."},
+  ]
+
+.text-samples
+  each item in data
+    +text-sample(item)
