@@ -1,8 +1,8 @@
 extends layout.pug
+//- Include mixins here
 include components/input/input.pug
 block header
-  h1 Components preview
+  //- h1 Components preview
 block content
-  include components/color-palette/color-palette.pug
-  +input({type: "email", id: "email", placeholder: "Email", title: "Text field", description: "default"})
+  include pages/ui-kit/ui-kit.pug
 block footer

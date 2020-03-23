@@ -1,7 +1,7 @@
 @import "@styles/fonts.scss";
 @import "@styles/colors.scss";
-@import "./components/color-palette/color-palette.scss";
-@import "./components/input/input.scss";
+@import "@styles/layout.scss";
+@import "pages/ui-kit/ui-kit.scss";
 
 html {
   font-family: Montserrat, sans-serif;
