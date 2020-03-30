@@ -4,6 +4,17 @@ mixin dropdown(props)
     label.input__label(for=props.id)
       span.input__title= props.title
       span.input__description= props.description
-    button.dropdown
+    button.dropdown(id=props.id)
       span.dropdown__select= props.select
       i.dropdown__icon-expand
+    .dropdown__content
+      each option in props.options
+        .option
+          span.option__name= option.name
+          .option__controls
+            button.increment.increment--disabled -
+            span= option.value
+            button.increment +
+      .dropdown__controls
+        button.dropdown__control.dropdown__control--gray Очистить
+        button.dropdown__control Применить

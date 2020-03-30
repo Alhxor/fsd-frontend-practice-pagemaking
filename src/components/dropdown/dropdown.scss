@@ -18,25 +18,83 @@
   @media screen and (max-width: 350px) {
     width: 280px;
   }
-  
+
   &:hover,
   &:focus {
     border-color: $dark50;
   }
-  
+
   &__select {
-    font-family: Montserrat;
     font-size: 14px;
     color: $dark75;
   }
 
   &__icon-expand {
     display: block;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border: 2px solid $dark75;
     border-top: none;
     border-right: none;
     transform: rotate(-45deg);
+    margin-right: 2px;
+    margin-bottom: 4px;
+  }
+
+  &__content {
+    padding: 5px;
+    border: 1px solid $dark50;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__control {
+    border: none;
+    background-color: white;
+    padding: 0;
+    color: $purple;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &__control--gray {
+    color: $dark50;
+  }
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+  
+  &__name {
+    color: $dark100;
+  }
+
+  &__controls {
+    width: 92px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.increment {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid $dark50;
+  color: $dark50;
+
+  &--disabled {
+    border-color: $dark25;
+    color: $dark25;
   }
 }
