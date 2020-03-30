@@ -1,0 +1,9 @@
+//- TODO: deal with style dependencies on .input (extract them or something)
+mixin dropdown(props)
+  .input
+    label.input__label(for=props.id)
+      span.input__title= props.title
+      span.input__description= props.description
+    button.dropdown
+      span.dropdown__select= props.select
+      i.dropdown__icon-expand

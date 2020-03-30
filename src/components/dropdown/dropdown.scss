@@ -1,0 +1,42 @@
+.dropdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+
+  width: 320px;
+  height: 44px;
+  line-height: 18px;
+  font-size: 14px;
+  background: #ffffff;
+  border: 1px solid $dark25;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media screen and (max-width: 350px) {
+    width: 280px;
+  }
+  
+  &:hover,
+  &:focus {
+    border-color: $dark50;
+  }
+  
+  &__select {
+    font-family: Montserrat;
+    font-size: 14px;
+    color: $dark75;
+  }
+
+  &__icon-expand {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border: 2px solid $dark75;
+    border-top: none;
+    border-right: none;
+    transform: rotate(-45deg);
+  }
+}
