@@ -1,3 +1,13 @@
+mixin option(props)
+  script.
+    let state = props.value
+  .option
+    span.option__name= props.name
+    .option__controls
+      button.increment.increment--disabled(onclick="") -
+      span= props.value
+      button.increment +
+
 //- TODO: deal with style dependencies on .input (extract them or something)
 mixin dropdown(props)
   script.
@@ -18,13 +28,8 @@ mixin dropdown(props)
         span.dropdown__select= props.select
         i.dropdown__icon-expand
       .dropdown__content
-        each option in props.options
-          .option
-            span.option__name= option.name
-            .option__controls
-              button.increment.increment--disabled -
-              span= option.value
-              button.increment +
+        each item in props.options
+          +option(item)
         .dropdown__controls
           button.dropdown__control.dropdown__control--gray Очистить
           button.dropdown__control Применить
