@@ -21,7 +21,6 @@
     width: 280px;
   }
 
-
   &__select {
     font-size: 14px;
     color: $dark75;
@@ -40,6 +39,7 @@
   }
 
   &__content {
+    // position: absolute;
     // display: none;
     padding: 4px 5px 5px 14px;
     // border: 1px solid $dark50;
@@ -117,8 +117,4 @@
   &:focus {
     border-color: $dark50;
   }
-}
-
-.hidden {
-  display: none;
 }

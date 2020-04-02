@@ -1,12 +1,29 @@
 mixin option(props)
   script.
-    let state = props.value
+    function changeValueByOne(refBtnDec, refValue, increment = true) {
+      const change = increment ? 1 : -1
+      const value = parseInt(refValue.textContent)
+      const newValue = value + change
+
+      if (newValue === 0) // no more decrements allowed, disable button
+        refBtnDec.classList.add("increment--disabled")
+      
+      if (value === 0 && newValue === 1) // enable it back
+        refBtnDec.classList.remove("increment--disabled")
+      
+      refValue.textContent = newValue
+    }
   .option
     span.option__name= props.name
     .option__controls
-      button.increment.increment--disabled(onclick="") -
+      button.increment(
+        onclick="changeValueByOne(this, this.nextSibling, increment = false)",
+        class=`${props.value === 0 ? "increment--disabled" : ""}`
+      ) -
       span= props.value
-      button.increment +
+      button.increment(
+        onclick="changeValueByOne(this.previousSibling.previousSibling, this.previousSibling, increment = true)"
+      ) +
 
 //- TODO: deal with style dependencies on .input (extract them or something)
 mixin dropdown(props)
