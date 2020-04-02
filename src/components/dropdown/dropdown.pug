@@ -1,4 +1,4 @@
-mixin option(props)
+mixin option(props, parentId)
   script.
     function changeValueByOne(refBtnDec, refValue, increment = true) {
       const change = increment ? 1 : -1
@@ -20,7 +20,7 @@ mixin option(props)
         onclick="changeValueByOne(this, this.nextSibling, increment = false)",
         class=`${props.value === 0 ? "increment--disabled" : ""}`
       ) -
-      span= props.value
+      span.option__value= props.value
       button.increment(
         onclick="changeValueByOne(this.previousSibling.previousSibling, this.previousSibling, increment = true)"
       ) +
@@ -29,13 +29,49 @@ mixin option(props)
 mixin dropdown(props)
   script.
     document.addEventListener("DOMContentLoaded", () => {
-      let id = "#{props.id}"
-      let toggle = document.getElementById(id)
+      const id = "#{props.id}"
+      const toggle = document.getElementById(id)
+      const title = toggle.querySelector(".dropdown__select")
+      const content = document.querySelector(`#${id}+.dropdown__content`)
+      const options = content.querySelectorAll(".option")
+      const optionValues = content.querySelectorAll(".option__value")
+        //.map(o => parseInt(o.textContent))
+      const controls = content.querySelectorAll(".dropdown__control")
+      const clear = controls[0]
+      const apply = controls[1]
+
+      // load data from localStorage and render it to content
+      const data = JSON.parse(localStorage.getItem(id))
+      if (data) {
+        title.textContent = "Total: " + data.total // TODO: extract into a function w/ local strings
+        optionValues.forEach((span, idx) =>
+          span.textContent = data.values[idx])
+      }
+
       toggle.addEventListener("click", () => {
-        let content = document.querySelector(`#${id}+.dropdown__content`)
         content.classList.toggle("hidden")
       })
+
+      apply.addEventListener("click", () => {
+        let values = [...optionValues]
+          .map(span => parseInt(span.textContent))
+        let sum = values.reduce((x, y) => x + y)
+        let data = {
+          "total": sum,
+          "values": values
+        }
+        localStorage.setItem(id, JSON.stringify(data))
+        clear.classList.remove("invisible")
+        title.textContent = "Total: " + sum // TODO: change 'Total' to a local string
+      })
+
+      clear.addEventListener("click", () => {
+        localStorage.removeItem(id)
+        clear.classList.add("invisible")
+        title.textContent = "#{props.select}"
+      })
     })
+
   .input
     label.input__label(for=props.id)
       span.input__title= props.title
@@ -46,7 +82,7 @@ mixin dropdown(props)
         i.dropdown__icon-expand
       .dropdown__content
         each item in props.options
-          +option(item)
+          +option(item, props.id)
         .dropdown__controls
-          button.dropdown__control.dropdown__control--gray Очистить
+          button.dropdown__control.dropdown__control--gray.invisible Очистить
           button.dropdown__control Применить
