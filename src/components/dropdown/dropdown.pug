@@ -49,6 +49,7 @@ mixin dropdown(props)
       }
 
       toggle.addEventListener("click", () => {
+        toggle.classList.toggle("dropdown--expanded")
         content.classList.toggle("hidden")
       })
 
@@ -80,7 +81,7 @@ mixin dropdown(props)
       button.dropdown(id=props.id)
         span.dropdown__select= props.select
         i.dropdown__icon-expand
-      .dropdown__content
+      .dropdown__content.hidden
         each item in props.options
           +option(item, props.id)
         .dropdown__controls
