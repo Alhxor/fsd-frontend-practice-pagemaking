@@ -1,95 +1,15 @@
 mixin option(props, parentId)
-  script.
-    function changeValueByOne(refBtnDec, refValue, increment = true) {
-      const change = increment ? 1 : -1
-      const value = parseInt(refValue.textContent)
-      const newValue = value + change
-
-      if (newValue === 0) // no more decrements allowed, disable button
-        refBtnDec.classList.add("increment--disabled")
-      
-      if (value === 0 && newValue === 1) // enable it back
-        refBtnDec.classList.remove("increment--disabled")
-      
-      refValue.textContent = newValue
-    }
   .option
     span.option__name= props.name
     .option__controls
       button.increment(
-        onclick="changeValueByOne(this, this.nextSibling, increment = false)",
         class=`${props.value === 0 ? "increment--disabled" : ""}`
       ) -
       span.option__value= props.value
-      button.increment(
-        onclick="changeValueByOne(this.previousSibling.previousSibling, this.previousSibling, increment = true)"
-      ) +
+      button.increment +
 
 //- TODO: deal with style dependencies on .input (extract them or something)
 mixin dropdown(props)
-  script.
-    document.addEventListener("DOMContentLoaded", () => {
-      const id = "#{props.id}"
-      const toggle = document.getElementById(id)
-      const title = toggle.querySelector(".dropdown__select")
-      const content = document.querySelector(`#${id}+.dropdown__content`)
-      const options = content.querySelectorAll(".option")
-      const optionValues = content.querySelectorAll(".option__value")
-      const controls = content.querySelectorAll(".dropdown__control")
-      const clear = controls[0]
-      const apply = controls[1]
-
-      // load data from localStorage and render it to content
-      const data = JSON.parse(localStorage.getItem(id))
-      if (data) {
-        title.textContent = `${data.total} ${getPluralForm(data.total, "#{props.select.wordForms}")}`
-        optionValues.forEach((span, idx) =>
-          span.textContent = data.values[idx])
-      }
-
-      toggle.addEventListener("click", () => {
-        toggle.classList.toggle("dropdown--expanded")
-        content.classList.toggle("hidden")
-      })
-
-      apply.addEventListener("click", () => {
-        let values = [...optionValues]
-          .map(span => parseInt(span.textContent))
-        let sum = values.reduce((x, y) => x + y)
-        let data = {
-          "total": sum,
-          "values": values
-        }
-        localStorage.setItem(id, JSON.stringify(data))
-        clear.classList.remove("invisible")
-        title.textContent = `${sum} ${getPluralForm(sum, "#{props.select.wordForms}")}`
-      })
-
-      clear.addEventListener("click", () => {
-        localStorage.removeItem(id)
-        clear.classList.add("invisible")
-        title.textContent = "#{props.select.title}"
-      })
-
-      /**
-       * @param num: number
-       * @param variants: "${form1},${form2},${form3}"
-       * @returns string
-       */
-      function getPluralForm(num, variants) {
-        const lastDigit = parseInt(num.toString().slice(-1))
-        if (!forms)
-          return "total"
-
-        const forms = variants.split(",")
-        if (lastDigit === 1)
-          return forms[0]
-        if (lastDigit > 1 && lastDigit < 5)
-          return forms[1]
-        return forms[2]
-      }
-    })
-
   .input
     label.input__label(for=props.id)
       span.input__title= props.title
