@@ -16,7 +16,7 @@ mixin dropdown(props)
       span.input__description= props.description
     .dropdown-container
       button.dropdown.dropdown--expanded(id=props.id)
-        span.dropdown__select= props.select.title
+        span.dropdown__select(data-plural=props.select.plural)= props.select.title
         i.dropdown__icon-expand
       .dropdown__content
         each item in props.options
