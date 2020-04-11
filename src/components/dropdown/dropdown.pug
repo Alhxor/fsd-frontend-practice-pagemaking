@@ -35,7 +35,6 @@ mixin dropdown(props)
       const content = document.querySelector(`#${id}+.dropdown__content`)
       const options = content.querySelectorAll(".option")
       const optionValues = content.querySelectorAll(".option__value")
-        //.map(o => parseInt(o.textContent))
       const controls = content.querySelectorAll(".dropdown__control")
       const clear = controls[0]
       const apply = controls[1]
@@ -43,7 +42,7 @@ mixin dropdown(props)
       // load data from localStorage and render it to content
       const data = JSON.parse(localStorage.getItem(id))
       if (data) {
-        title.textContent = "Total: " + data.total // TODO: extract into a function w/ local strings
+        title.textContent = `${data.total} ${getPluralForm(data.total, "#{props.select.wordForms}")}`
         optionValues.forEach((span, idx) =>
           span.textContent = data.values[idx])
       }
@@ -63,14 +62,32 @@ mixin dropdown(props)
         }
         localStorage.setItem(id, JSON.stringify(data))
         clear.classList.remove("invisible")
-        title.textContent = "Total: " + sum // TODO: change 'Total' to a local string
+        title.textContent = `${sum} ${getPluralForm(sum, "#{props.select.wordForms}")}`
       })
 
       clear.addEventListener("click", () => {
         localStorage.removeItem(id)
         clear.classList.add("invisible")
-        title.textContent = "#{props.select}"
+        title.textContent = "#{props.select.title}"
       })
+
+      /**
+       * @param num: number
+       * @param variants: "${form1},${form2},${form3}"
+       * @returns string
+       */
+      function getPluralForm(num, variants) {
+        const lastDigit = parseInt(num.toString().slice(-1))
+        if (!forms)
+          return "total"
+
+        const forms = variants.split(",")
+        if (lastDigit === 1)
+          return forms[0]
+        if (lastDigit > 1 && lastDigit < 5)
+          return forms[1]
+        return forms[2]
+      }
     })
 
   .input
@@ -78,10 +95,10 @@ mixin dropdown(props)
       span.input__title= props.title
       span.input__description= props.description
     .dropdown-container
-      button.dropdown(id=props.id)
-        span.dropdown__select= props.select
+      button.dropdown.dropdown--expanded(id=props.id)
+        span.dropdown__select= props.select.title
         i.dropdown__icon-expand
-      .dropdown__content.hidden
+      .dropdown__content
         each item in props.options
           +option(item, props.id)
         .dropdown__controls

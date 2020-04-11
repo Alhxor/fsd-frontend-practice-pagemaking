@@ -2,7 +2,12 @@
 +dropdown({
   title: "Dropdown", 
   id: "dropdown-1", 
-  select: "Сколько гостей", 
+
+  select: {
+    title: "Сколько гостей",
+    wordForms: "гость,гостя,гостей"
+  },
+  
   options: [
     {name: "взрослые", value: 2}, 
     {name: "дети", value: 1}, 
