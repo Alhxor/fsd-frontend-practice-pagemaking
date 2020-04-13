@@ -1,0 +1,15 @@
+.masked-input {
+  position: relative;
+}
+
+.masked-placeholder {
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  display: block;
+  color: $dark25;
+}
+
+.input__field--masked {
+  font-family: Montserrat;
+}

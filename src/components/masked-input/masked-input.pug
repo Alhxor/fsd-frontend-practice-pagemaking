@@ -1,0 +1,14 @@
+mixin masked-input(props)
+  -
+    var maskedId = props.id + "-placeholder"
+  .input
+    label.input__label(for=props.id)
+      span.input__title= props.title
+      span.input__description= props.description
+    .masked-input
+      input.input__field.input__field--masked(
+        type=props.type,
+        id=props.id,
+        class="js-masked-input"
+      )
+      span.masked-placeholder(id=`${maskedId}`)= props.placeholder
