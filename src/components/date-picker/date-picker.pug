@@ -1,0 +1,17 @@
+mixin date-picker(props)
+  -
+    var weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
+    var days = []
+    for (var i = 1; i <= 31; i++) days.push(i)
+  .date-picker
+    header.date-picker__header
+      .arrow-left
+      span.date-picker__heading Апрель 2019
+      .arrow-left.arrow-left--mirror
+    .date-grid
+      header.date-grid__header
+        each day in weekdays
+          span.date-grid__cell.date-grid__cell--heading= day
+      .date-grid__days
+        each day in days
+          span.date-grid__cell= day

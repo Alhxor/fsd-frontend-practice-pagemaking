@@ -1,0 +1,83 @@
+.date-picker {
+  width: 252px; // 7 * 36
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+
+  &__heading {
+
+  }
+}
+
+.arrow-left {
+  position: relative;
+
+  top: 8px;
+
+  width: 8px;
+  height: 8px;
+  box-sizing: border-box;
+  border-color: black white white black;
+  border-width: 2px;
+  border-style: solid;
+
+  &::before {
+    display: table;
+    content: "";
+    position: absolute;
+
+    left: -1px;
+    top: -2px;
+
+    width: 12px;
+    height: 2px;
+    box-sizing: border-box;
+
+    border-radius: 50% 0 0;
+
+    background: black;
+
+    transform-origin: 0;
+    transform: rotate(45deg);
+  }
+
+  transform: rotate(-45deg);
+
+  &--mirror {
+    transform: rotate(135deg);
+  }
+}
+
+
+.date-grid {
+  width: 252px;
+
+  &__header {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  &__days {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  &__cell {
+    display: flex;
+    width: 36px;
+    height: 36px;
+    box-sizing: border-box;
+
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 10px;
+
+    &--heading {
+      justify-content: center;
+      padding: 0;
+    }
+  }
+}
