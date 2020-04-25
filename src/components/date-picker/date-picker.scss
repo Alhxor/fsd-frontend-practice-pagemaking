@@ -4,6 +4,7 @@
   &__header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0 10px;
   }
 
@@ -13,42 +14,42 @@
 }
 
 .arrow-left {
+  $w: 18px;
+  $h: 3px;
+  $left: -2px;
+  $top: 3px;
+
   position: relative;
 
-  top: 8px;
+  height: $h;
+  width: $w;
 
-  width: 8px;
-  height: 8px;
-  box-sizing: border-box;
-  border-color: black white white black;
-  border-width: 2px;
-  border-style: solid;
+  background-color: black;
 
-  &::before {
-    display: table;
+  &::before, &::after {
     content: "";
     position: absolute;
+    height: $h;
+    width: 60%;
+    background-color: black;
+    left: $left;
+  }
 
-    left: -1px;
-    top: -2px;
+  &::before {
+    top: -$top;
+    transform: rotate(-45deg);
+  }
 
-    width: 12px;
-    height: 2px;
-    box-sizing: border-box;
-
-    border-radius: 50% 0 0;
-
-    background: black;
-
-    transform-origin: 0;
+  &::after {
+    top: $top;
     transform: rotate(45deg);
   }
 
-  transform: rotate(-45deg);
+}
 
-  &--mirror {
-    transform: rotate(135deg);
-  }
+.arrow-right {
+  @extend .arrow-left;
+  transform: rotate(180deg);
 }
 
 
