@@ -1,0 +1,22 @@
+.save-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  padding-top: 6px;
+
+  &__apply,
+  &__clear {
+    border: none;
+    background-color: white;
+    padding: 0;
+    color: $purple;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  &__clear {
+    color: $dark50;
+  }
+}
