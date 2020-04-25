@@ -1,17 +1,32 @@
 mixin date-picker(props)
   -
     var weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
+    var daysLastMonth = [29, 30, 31]
     var days = []
     for (var i = 1; i <= 31; i++) days.push(i)
+    var daysNextMonth = [1]
   .date-picker
     header.date-picker__header
       .arrow-left
-      span.date-picker__heading Апрель 2019
+      span.date-picker__heading Август 2019
       .arrow-right
     .date-grid
       header.date-grid__header
         each day in weekdays
           span.date-grid__cell.date-grid__cell--heading= day
       .date-grid__days
+        each day in daysLastMonth
+          span.date-grid__cell.date-grid__cell--not-this-month= day
         each day in days
-          span.date-grid__cell= day
+          if (day === 8)
+            span.date-grid__cell.date-grid__cell--today= day
+          else if (day === 19)
+            span.date-grid__cell.date-grid__cell--range-start= day
+          else if (day === 23)
+            span.date-grid__cell.date-grid__cell--range-end= day
+          else if (day > 19 && day < 23)
+            span.date-grid__cell.date-grid__cell--range= day
+          else
+            span.date-grid__cell= day
+        each day in daysNextMonth
+          span.date-grid__cell.date-grid__cell--not-this-month= day

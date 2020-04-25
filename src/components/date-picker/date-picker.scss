@@ -1,15 +1,31 @@
 .date-picker {
-  width: 252px; // 7 * 36
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 320px;
+  padding: 20px;
+  box-sizing: border-box;
+
+  border: 1px solid $dark25;
+  border-radius: 4px;
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    width: 100%;
+    margin-bottom: 30px;
   }
 
   &__heading {
-
+    font-family: Quicksand, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 24px;
+    color: $dark100;
   }
 }
 
@@ -24,14 +40,15 @@
   height: $h;
   width: $w;
 
-  background-color: black;
+  background-color: $purple;
 
-  &::before, &::after {
+  &::before,
+  &::after {
     content: "";
     position: absolute;
     height: $h;
     width: 60%;
-    background-color: black;
+    background-color: inherit;
     left: $left;
   }
 
@@ -44,7 +61,6 @@
     top: $top;
     transform: rotate(45deg);
   }
-
 }
 
 .arrow-right {
@@ -52,9 +68,8 @@
   transform: rotate(180deg);
 }
 
-
 .date-grid {
-  width: 252px;
+  width: 280px;
 
   &__header {
     display: flex;
@@ -68,17 +83,69 @@
 
   &__cell {
     display: flex;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     box-sizing: border-box;
 
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    padding-right: 10px;
+    // padding-right: 15px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+
+    color: $dark50;
+
+    &--today, &--range-start, &--range-end {
+      color: white;
+      font-weight: bold;
+      border-radius: 50%;
+    }
+
+    &--today {
+      background-image: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+    }
+
+    &--range-start, &--range-end {
+      position: relative;
+      background-image: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-image: linear-gradient(180deg, #bb9cff19 0%, #8BA4F919 100%);
+      }
+    }
+    
+    &--range-start {
+      &::after {
+        border-radius: 50% 0 0 50%;
+      }
+    }
+
+    &--range-end {
+      &::after {
+        border-radius: 0 50% 50% 0;
+      }
+    }
+
+    &--range {
+      background-image: linear-gradient(180deg, #bb9cff19 0%, #8BA4F919 100%);
+    }
+
+    &--not-this-month {
+      color: $dark25;
+    }
 
     &--heading {
       justify-content: center;
       padding: 0;
+      font-weight: bold;
+      color: $purple;
     }
   }
 }

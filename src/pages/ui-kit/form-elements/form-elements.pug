@@ -1,22 +1,25 @@
-+input({type: "email", id: "email", placeholder: "Email", title: "Text field", description: "default"})
-+dropdown({
-  title: "Dropdown", 
-  id: "dropdown-1", 
+p
+  +input({type: "email", id: "email", placeholder: "Email", title: "Text field", description: "default"})
+p
+  +dropdown({
+    title: "Dropdown", 
+    id: "dropdown-1", 
 
-  select: {
-    title: "Сколько гостей",
-    plural: "гость,гостя,гостей"
-  },
-  
-  options: [
-    {name: "взрослые", value: 0}, 
-    {name: "дети", value: 0}, 
-    {name: "младенцы", value: 0}
-  ]
-})
+    select: {
+      title: "Сколько гостей",
+      plural: "гость,гостя,гостей"
+    },
+    
+    options: [
+      {name: "взрослые", value: 0}, 
+      {name: "дети", value: 0}, 
+      {name: "младенцы", value: 0}
+    ]
+  })
 
 //- +input({type: "email", id: "email", placeholder: "Email", title: "Text field", description: "default"})
 
-+masked-input({type: "text", id: "masked", placeholder: "ДД.ММ.ГГГГ", title: "Masked text field", description: "default"})
-
-+date-picker({})
+p
+  +masked-input({type: "text", id: "masked", placeholder: "ДД.ММ.ГГГГ", title: "Masked text field", description: "default"})
+p
+  +date-picker({})
