@@ -1,3 +1,5 @@
+include ../common/save-controls/save-controls.pug
+
 mixin date-picker(props)
   -
     var weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
@@ -5,28 +7,39 @@ mixin date-picker(props)
     var days = []
     for (var i = 1; i <= 31; i++) days.push(i)
     var daysNextMonth = [1]
+
   .date-picker
     header.date-picker__header
       .arrow-left
       span.date-picker__heading Август 2019
       .arrow-right
-    .date-grid
-      header.date-grid__header
+
+    .days-grid
+      header.days-grid__header
         each day in weekdays
-          span.date-grid__cell.date-grid__cell--heading= day
-      .date-grid__days
+          span.days-grid__cell.days-grid__cell--heading= day
+
+      .days-grid__days
         each day in daysLastMonth
-          span.date-grid__cell.date-grid__cell--not-this-month= day
+          span.days-grid__cell.days-grid__cell--not-this-month= day
         each day in days
           if (day === 8)
-            span.date-grid__cell.date-grid__cell--today= day
+            span.days-grid__cell.days-grid__cell--today= day
           else if (day === 19)
-            span.date-grid__cell.date-grid__cell--range-start= day
+            span.days-grid__cell.days-grid__cell--range-start= day
           else if (day === 23)
-            span.date-grid__cell.date-grid__cell--range-end= day
+            span.days-grid__cell.days-grid__cell--range-end= day
           else if (day > 19 && day < 23)
-            span.date-grid__cell.date-grid__cell--range= day
+            span.days-grid__cell.days-grid__cell--range= day
           else
-            span.date-grid__cell= day
+            span.days-grid__cell= day
         each day in daysNextMonth
-          span.date-grid__cell.date-grid__cell--not-this-month= day
+          span.days-grid__cell.days-grid__cell--not-this-month= day
+
+    +save-controls({
+      classNames: {
+        container: "date-picker__controls js-date-picker__controls",
+        clear: "js-date-picker__control",
+        apply: "js-date-picker__control"
+      }
+    })
