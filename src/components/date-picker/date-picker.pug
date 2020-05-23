@@ -3,10 +3,6 @@ include ../common/save-controls/save-controls.pug
 mixin date-picker(props)
   -
     var weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
-    var daysLastMonth = [29, 30, 31]
-    var days = []
-    for (var i = 1; i <= 31; i++) days.push(i)
-    var daysNextMonth = [1]
 
   .date-picker
     header.date-picker__header
@@ -20,23 +16,7 @@ mixin date-picker(props)
       header.days-grid__header
         each day in weekdays
           span.days-grid__cell.days-grid__cell--heading= day
-
       .days-grid__days
-        //- each day in daysLastMonth
-        //-   span.days-grid__cell.days-grid__cell--not-this-month= day
-        //- each day in days
-        //-   if (day === 8)
-        //-     span.days-grid__cell.days-grid__cell--today= day
-        //-   else if (day === 19)
-        //-     span.days-grid__cell.days-grid__cell--range-start= day
-        //-   else if (day === 23)
-        //-     span.days-grid__cell.days-grid__cell--range-end= day
-        //-   else if (day > 19 && day < 23)
-        //-     span.days-grid__cell.days-grid__cell--range= day
-        //-   else
-        //-     span.days-grid__cell= day
-        //- each day in daysNextMonth
-        //-   span.days-grid__cell.days-grid__cell--not-this-month= day
 
     +save-controls({
       classNames: {
