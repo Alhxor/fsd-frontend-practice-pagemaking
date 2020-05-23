@@ -10,9 +10,11 @@ mixin date-picker(props)
 
   .date-picker
     header.date-picker__header
-      .arrow-left
+      .date-picker__previous
+        .arrow-left
       span.date-picker__heading Август 2019
-      .arrow-right
+      .date-picker__next
+        .arrow-right
 
     .days-grid
       header.days-grid__header
@@ -20,21 +22,21 @@ mixin date-picker(props)
           span.days-grid__cell.days-grid__cell--heading= day
 
       .days-grid__days
-        each day in daysLastMonth
-          span.days-grid__cell.days-grid__cell--not-this-month= day
-        each day in days
-          if (day === 8)
-            span.days-grid__cell.days-grid__cell--today= day
-          else if (day === 19)
-            span.days-grid__cell.days-grid__cell--range-start= day
-          else if (day === 23)
-            span.days-grid__cell.days-grid__cell--range-end= day
-          else if (day > 19 && day < 23)
-            span.days-grid__cell.days-grid__cell--range= day
-          else
-            span.days-grid__cell= day
-        each day in daysNextMonth
-          span.days-grid__cell.days-grid__cell--not-this-month= day
+        //- each day in daysLastMonth
+        //-   span.days-grid__cell.days-grid__cell--not-this-month= day
+        //- each day in days
+        //-   if (day === 8)
+        //-     span.days-grid__cell.days-grid__cell--today= day
+        //-   else if (day === 19)
+        //-     span.days-grid__cell.days-grid__cell--range-start= day
+        //-   else if (day === 23)
+        //-     span.days-grid__cell.days-grid__cell--range-end= day
+        //-   else if (day > 19 && day < 23)
+        //-     span.days-grid__cell.days-grid__cell--range= day
+        //-   else
+        //-     span.days-grid__cell= day
+        //- each day in daysNextMonth
+        //-   span.days-grid__cell.days-grid__cell--not-this-month= day
 
     +save-controls({
       classNames: {
