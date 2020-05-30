@@ -15,6 +15,7 @@ function DatePicker(node) {
   let month = today.getMonth();
 
   displayCalendarPage(year, month);
+  saveState(year, month);
 
   previous.addEventListener("click", () => {
     if (month === 0) displayCalendarPage(year - 1, 11);
@@ -34,6 +35,13 @@ function DatePicker(node) {
     page = node.querySelector(".days-grid__days");
     month = newMonth;
     year = newYear;
+
+    saveState(year, month);
+  }
+
+  function saveState(year, month) {
+    sessionStorage.setItem("dp-visible-year", year);
+    sessionStorage.setItem("dp-visible-month", month);
   }
 }
 
@@ -53,6 +61,98 @@ const MONTHS = [
 ];
 
 const WEEKDAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+
+function onCellClick({ target }) {
+  const date = getDateFromCell(target);
+  // console.log(date)
+
+  // console.log(target.parentNode)
+  smartCellHighlight(target, date)
+  // target.classList.contains("days-grid__cell--range-start")
+}
+
+/**
+ * Helper function for date-picker
+ * Highlights a range of cells on the calendar page in two clicks (from, to)
+ * 3rd click clears selection
+ * @param {Node} clickedCell A calendar cell which user has just clicked on
+ * @param {Date} cellDate Date in the clicked cell
+ */
+function smartCellHighlight(clickedCell, cellDate) {
+  // refactor me, please!
+  // TODO: cover the case where user clicks on end date first, then on start date
+
+  const page = clickedCell.parentNode;
+  const classStart = "days-grid__cell--range-start";
+  const classEnd = "days-grid__cell--range-end";
+  const classHighlight = "days-grid__cell--range";
+  const start = sessionStorage.getItem("dp-highlight-start");
+  const end = sessionStorage.getItem("dp-highlight-end");
+
+  if (!start) {
+    clickedCell.classList.add(classStart);
+    sessionStorage.setItem("dp-highlight-start", cellDate.toLocaleString());
+    return;
+  }
+
+  if (!end) {
+    clickedCell.classList.add(classEnd);
+    sessionStorage.setItem("dp-highlight-end", cellDate.toLocaleString());
+
+    cells = page.querySelectorAll(".days-grid__cell");
+    let inRange = false;
+    for (let i = cells.length - 1; i !== -1; i--) {
+      if (cells[i].classList.contains(classEnd)) {
+        inRange = true;
+        continue;
+      }
+      if (inRange) {
+        if (cells[i].classList.contains(classStart)) break;
+        cells[i].classList.add(classHighlight);
+      }
+    }
+    return;
+  }
+
+  // remove all highlighting on 3rd click
+  sessionStorage.removeItem("dp-highlight-start")
+  sessionStorage.removeItem("dp-highlight-end")
+
+  let cellStart = page.querySelector(`.${classStart}`)
+  if (cellStart) cellStart.classList.remove(classStart)
+
+  let cellsHighlighted = page.querySelectorAll(`.${classHighlight}`)  
+  if (cellsHighlighted) cellsHighlighted.forEach(cell => cell.classList.remove(classHighlight))
+
+  let cellEnd = page.querySelector(`.${classEnd}`)
+  if(cellEnd) cellEnd.classList.remove(classEnd)
+}
+
+/**
+ * Helper function for onCellClick, returns a full date for a given calendar cell
+ * @param {Node} cell A calendar cell in date-picker
+ * @returns {Date} JS Date object
+ */
+function getDateFromCell(cell) {
+  let year = parseInt(sessionStorage.getItem("dp-visible-year"));
+  let month = parseInt(sessionStorage.getItem("dp-visible-month"));
+  const date = parseInt(cell.textContent);
+
+  if (cell.classList.contains("days-grid__cell--not-this-month"))
+    if (date < 10)
+      if (month !== 11) month++;
+      else {
+        month = 0;
+        year++;
+      }
+    else if (month !== 0) month--;
+    else {
+      month = 11;
+      year--;
+    }
+
+  return new Date(year, month, date);
+}
 
 /**
  * Creates calendar grid for a given year & month
@@ -102,6 +202,17 @@ function CalendarPage(year, month) {
 }
 
 /**
+ *
+ * @param {object} range {start: number, end: number, className: string}
+ * @param {Node} parent HTML Node to append range of cells to
+ */
+function appendCellRange({ start, end, className }, parent) {
+  let data = [];
+  for (let i = start; i < end; i++) data.push(i);
+  appendCells(data, className, parent);
+}
+
+/**
  * Helper function for DatePicker, creates and appends cells to a calendar grid
  * @param {array<number>} days
  * @param {string} className class name for each cell
@@ -110,6 +221,7 @@ function CalendarPage(year, month) {
 function appendCells(days, className, parent) {
   for (let day of days) {
     let cell = document.createElement("span");
+    cell.addEventListener("click", onCellClick);
     cell.className = className;
     cell.textContent = day;
     parent.appendChild(cell);
