@@ -64,11 +64,8 @@ const WEEKDAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
 function onCellClick({ target }) {
   const date = getDateFromCell(target);
-  // console.log(date)
 
-  // console.log(target.parentNode)
-  smartCellHighlight(target, date)
-  // target.classList.contains("days-grid__cell--range-start")
+  smartCellHighlight(target, date);
 }
 
 /**
@@ -79,15 +76,16 @@ function onCellClick({ target }) {
  * @param {Date} cellDate Date in the clicked cell
  */
 function smartCellHighlight(clickedCell, cellDate) {
-  // refactor me, please!
-  // TODO: cover the case where user clicks on end date first, then on start date
+  // big and hacky, not optimized, but simple
+  // TODO: handle backwards selection between different months
 
   const page = clickedCell.parentNode;
   const classStart = "days-grid__cell--range-start";
   const classEnd = "days-grid__cell--range-end";
   const classHighlight = "days-grid__cell--range";
-  const start = sessionStorage.getItem("dp-highlight-start");
-  const end = sessionStorage.getItem("dp-highlight-end");
+
+  let start = sessionStorage.getItem("dp-highlight-start");
+  let end = sessionStorage.getItem("dp-highlight-end");
 
   if (!start) {
     clickedCell.classList.add(classStart);
@@ -96,11 +94,27 @@ function smartCellHighlight(clickedCell, cellDate) {
   }
 
   if (!end) {
-    clickedCell.classList.add(classEnd);
-    sessionStorage.setItem("dp-highlight-end", cellDate.toLocaleString());
+    end = cellDate.toLocaleString();
+
+    if (new Date(start) > new Date(end)) {
+      // reverse selection, swap start with end
+      let savedStart = start;
+      start = end;
+      end = savedStart;
+      sessionStorage.setItem("dp-highlight-start", start);
+
+      const cellStart = page.querySelector(`.${classStart}`);
+      if (cellStart) {
+        cellStart.classList.remove(classStart);
+        cellStart.classList.add(classEnd);
+      }
+      clickedCell.classList.add(classStart);
+    } else clickedCell.classList.add(classEnd);
+    sessionStorage.setItem("dp-highlight-end", end);
 
     cells = page.querySelectorAll(".days-grid__cell");
     let inRange = false;
+
     for (let i = cells.length - 1; i !== -1; i--) {
       if (cells[i].classList.contains(classEnd)) {
         inRange = true;
@@ -114,18 +128,19 @@ function smartCellHighlight(clickedCell, cellDate) {
     return;
   }
 
-  // remove all highlighting on 3rd click
-  sessionStorage.removeItem("dp-highlight-start")
-  sessionStorage.removeItem("dp-highlight-end")
+  // remove all highlighting on 3rd call (click)
+  sessionStorage.removeItem("dp-highlight-start");
+  sessionStorage.removeItem("dp-highlight-end");
 
-  let cellStart = page.querySelector(`.${classStart}`)
-  if (cellStart) cellStart.classList.remove(classStart)
+  let cellStart = page.querySelector(`.${classStart}`);
+  if (cellStart) cellStart.classList.remove(classStart);
 
-  let cellsHighlighted = page.querySelectorAll(`.${classHighlight}`)  
-  if (cellsHighlighted) cellsHighlighted.forEach(cell => cell.classList.remove(classHighlight))
+  let cellsHighlighted = page.querySelectorAll(`.${classHighlight}`);
+  if (cellsHighlighted)
+    cellsHighlighted.forEach((cell) => cell.classList.remove(classHighlight));
 
-  let cellEnd = page.querySelector(`.${classEnd}`)
-  if(cellEnd) cellEnd.classList.remove(classEnd)
+  let cellEnd = page.querySelector(`.${classEnd}`);
+  if (cellEnd) cellEnd.classList.remove(classEnd);
 }
 
 /**
@@ -202,7 +217,7 @@ function CalendarPage(year, month) {
 }
 
 /**
- *
+ * TODO: make use of this function or edit / delete it
  * @param {object} range {start: number, end: number, className: string}
  * @param {Node} parent HTML Node to append range of cells to
  */
