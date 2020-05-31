@@ -113,14 +113,22 @@
 
     color: $dark50;
 
-    &--today, &--range-start, &--range-end {
-      color: white;
-      font-weight: bold;
-      border-radius: 50%;
+    &--range {
+      background-image: linear-gradient(180deg, #bb9cff19 0%, #8BA4F919 100%);
+    }
+
+    &--not-this-month {
+      color: $dark25;
     }
 
     &--today {
       background-image: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+    }
+
+    &--today, &--range-start, &--range-end {
+      color: white;
+      font-weight: bold;
+      border-radius: 50%;
     }
 
     &--range-start, &--range-end {
@@ -146,14 +154,6 @@
       &::after {
         border-radius: 0 50% 50% 0;
       }
-    }
-
-    &--range {
-      background-image: linear-gradient(180deg, #bb9cff19 0%, #8BA4F919 100%);
-    }
-
-    &--not-this-month {
-      color: $dark25;
     }
 
     &--heading {
