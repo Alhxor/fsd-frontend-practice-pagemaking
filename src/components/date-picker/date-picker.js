@@ -64,7 +64,6 @@ const WEEKDAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
 function onCellClick({ target }) {
   const date = getDateFromCell(target);
-
   smartCellHighlight(target, date);
 }
 
@@ -167,6 +166,41 @@ function getDateFromCell(cell) {
     }
 
   return new Date(year, month, date);
+}
+
+/**
+ * Finds a calendar cell that matches a given Date object
+ * @param {Date} date JS Date object to find in a calendar page
+ * @param {Node} page DOM Node - calendar page
+ * @param {number} pageYear Currently visible year
+ * @param {number} pageMonth Currently visible month
+ * @returns {Node} Calendar cell with a given date or null if nothing found
+ */
+function getCellFromDate(date, page, pageYear, pageMonth) {
+  const month = date.getMonth();
+  const day = date.getDate();
+
+  const msDay = 24 * 60 * 60 * 1000;
+  const pageCenter = new Date(pageYear, pageMonth, 15);
+  const difference = Math.abs(date - pageCenter);
+
+  if (difference > 28 * msDay) return null;
+
+  if (month === pageMonth) {
+    for (cell of page.children)
+      if (
+        parseInt(cell.textContent) === day &&
+        !cell.classList.contains("days-grid__cell--not-this-month")
+      )
+        return cell;
+  } else
+    for (cell of page.children)
+      if (
+        parseInt(cell.textContent) === day &&
+        cell.classList.contains("days-grid__cell--not-this-month")
+      )
+        return cell;
+  return null;
 }
 
 /**
