@@ -37,6 +37,36 @@ function DatePicker(node) {
     year = newYear;
 
     saveState(year, month);
+
+    const start = parseInt(sessionStorage.getItem("dp-highlight-start"));
+    const end = parseInt(sessionStorage.getItem("dp-highlight-end"));
+
+    if (!start || !end) return;
+
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    const classStart = "days-grid__cell--range-start";
+    const classEnd = "days-grid__cell--range-end";
+
+    const startCell = getCellFromDate(startDate, page);
+    const endCell = getCellFromDate(endDate, page);
+
+    if (startCell) startCell.classList.add(classStart);
+    if (endCell) endCell.classList.add(classEnd);
+
+    if (!startCell && !endCell) {
+      if (
+        month >= startDate.getMonth() &&
+        month <= endDate.getMonth() &&
+        year >= startDate.getFullYear() &&
+        year <= endDate.getFullYear()
+      )
+        highlightCellsRange(page, startDate, endDate);
+      else return;
+    }
+
+    highlightCellsRange(page, startDate, endDate);
   }
 
   function saveState(year, month) {
@@ -68,9 +98,46 @@ function onCellClick({ target }) {
 }
 
 /**
+ * @param {Date} date JS Date object
+ * @param {number} days number of days to add
+ * @returns {Date} Date advanced by number of days
+ */
+function addDays(date, days) {
+  const msPerDay = 24 * 3600 * 1000;
+  return new Date(Number(date) + days * msPerDay);
+}
+
+/**
+ * Returns a Range on a calendar page between start and end dates
+ * If start or end are on another page will select until start / end of the page itself
+ * @param {Node} page Calendar page in date-picker
+ * @param {Date} start
+ * @param {Date} end
+ * @returns {Range} JS Range object
+ */
+function createCellRange(page, start, end) {
+  if (!page || !start || !end) return null;
+
+  start = addDays(start, 1);
+  end = addDays(end, -1);
+
+  let cellStart = getCellFromDate(start, page);
+  let cellEnd = getCellFromDate(end, page);
+  let range = new Range();
+
+  if (cellStart) range.setStart(cellStart, 0);
+  else range.setStart(page.firstChild, 0);
+
+  if (cellEnd) range.setEnd(cellEnd, 0);
+  else range.setEnd(page.lastChild, 0);
+
+  return range;
+}
+
+/**
  * Helper function for date-picker
  * Highlights a range of cells on the calendar page in two clicks (from, to)
- * 3rd click clears selection
+ * 3rd call clears selection
  * @param {Node} clickedCell A calendar cell which user has just clicked on
  * @param {Date} cellDate Date in the clicked cell
  */
@@ -81,19 +148,18 @@ function smartCellHighlight(clickedCell, cellDate) {
   const page = clickedCell.parentNode;
   const classStart = "days-grid__cell--range-start";
   const classEnd = "days-grid__cell--range-end";
-  const classHighlight = "days-grid__cell--range";
 
-  let start = sessionStorage.getItem("dp-highlight-start");
-  let end = sessionStorage.getItem("dp-highlight-end");
+  let start = parseInt(sessionStorage.getItem("dp-highlight-start"));
+  let end = parseInt(sessionStorage.getItem("dp-highlight-end"));
 
   if (!start) {
     clickedCell.classList.add(classStart);
-    sessionStorage.setItem("dp-highlight-start", cellDate.toLocaleString());
+    sessionStorage.setItem("dp-highlight-start", Number(cellDate));
     return;
   }
 
   if (!end) {
-    end = cellDate.toLocaleString();
+    end = Number(cellDate);
 
     if (new Date(start) > new Date(end)) {
       // reverse selection, swap start with end
@@ -109,25 +175,42 @@ function smartCellHighlight(clickedCell, cellDate) {
       }
       clickedCell.classList.add(classStart);
     } else clickedCell.classList.add(classEnd);
+
     sessionStorage.setItem("dp-highlight-end", end);
 
-    cells = page.querySelectorAll(".days-grid__cell");
-    let inRange = false;
+    highlightCellsRange(page, new Date(start), new Date(end));
 
-    for (let i = cells.length - 1; i !== -1; i--) {
-      if (cells[i].classList.contains(classEnd)) {
-        inRange = true;
-        continue;
-      }
-      if (inRange) {
-        if (cells[i].classList.contains(classStart)) break;
-        cells[i].classList.add(classHighlight);
-      }
-    }
     return;
   }
 
   // remove all highlighting on 3rd call (click)
+  clearCellsHighlighting(page);
+}
+
+/**
+ * @param {Node} page Calendar page in date-picker
+ * @param {Date} start
+ * @param {Date} end
+ */
+function highlightCellsRange(page, start, end) {
+  const classHighlight = "days-grid__cell--range";
+  const cells = page.querySelectorAll(".days-grid__cell");
+  const highlightRange = createCellRange(page, start, end);
+
+  for (cell of cells) {
+    if (highlightRange.isPointInRange(cell, 0))
+      cell.classList.add(classHighlight);
+  }
+}
+
+/**
+ * @param {Node} page Calendar page in date-picker
+ */
+function clearCellsHighlighting(page) {
+  const classStart = "days-grid__cell--range-start";
+  const classEnd = "days-grid__cell--range-end";
+  const classHighlight = "days-grid__cell--range";
+
   sessionStorage.removeItem("dp-highlight-start");
   sessionStorage.removeItem("dp-highlight-end");
 
@@ -153,7 +236,7 @@ function getDateFromCell(cell) {
   const date = parseInt(cell.textContent);
 
   if (cell.classList.contains("days-grid__cell--not-this-month"))
-    if (date < 10)
+    if (date < 15)
       if (month !== 11) month++;
       else {
         month = 0;
@@ -170,13 +253,16 @@ function getDateFromCell(cell) {
 
 /**
  * Finds a calendar cell that matches a given Date object
+ * Depends on current visible year & month saved in sessionStorage
  * @param {Date} date JS Date object to find in a calendar page
  * @param {Node} page DOM Node - calendar page
  * @param {number} pageYear Currently visible year
  * @param {number} pageMonth Currently visible month
  * @returns {Node} Calendar cell with a given date or null if nothing found
  */
-function getCellFromDate(date, page, pageYear, pageMonth) {
+function getCellFromDate(date, page) {
+  const pageYear = parseInt(sessionStorage.getItem("dp-visible-year"));
+  const pageMonth = parseInt(sessionStorage.getItem("dp-visible-month"));
   const month = date.getMonth();
   const day = date.getDate();
 
@@ -248,17 +334,6 @@ function CalendarPage(year, month) {
   );
 
   return calendarGrid;
-}
-
-/**
- * TODO: make use of this function or edit / delete it
- * @param {object} range {start: number, end: number, className: string}
- * @param {Node} parent HTML Node to append range of cells to
- */
-function appendCellRange({ start, end, className }, parent) {
-  let data = [];
-  for (let i = start; i < end; i++) data.push(i);
-  appendCells(data, className, parent);
 }
 
 /**
