@@ -19,7 +19,8 @@
     margin-bottom: 29px;
   }
 
-  &__previous, &__next {
+  &__previous,
+  &__next {
     cursor: pointer;
     width: 20px;
     height: 20px;
@@ -36,7 +37,7 @@
     line-height: 24px;
     color: $dark100;
   }
-  
+
   &__controls {
     width: 100%;
   }
@@ -114,7 +115,7 @@
     color: $dark50;
 
     &--range {
-      background-image: linear-gradient(180deg, #bb9cff19 0%, #8BA4F919 100%);
+      background-image: linear-gradient(180deg, #bb9cff19 0%, #8ba4f919 100%);
     }
 
     &--not-this-month {
@@ -125,25 +126,45 @@
       background-image: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
     }
 
-    &--today, &--range-start, &--range-end {
+    &--range#{&}--today {
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: linear-gradient(180deg, #bb9cff19 0%, #8ba4f919 100%);
+      }
+    }
+
+    &--today,
+    &--range-start,
+    &--range-end {
       color: white;
       font-weight: bold;
       border-radius: 50%;
     }
 
-    &--range-start, &--range-end {
+    &--range-start,
+    &--range-end {
       position: relative;
-      background-image: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+      background-image: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
       cursor: pointer;
 
       &::after {
         content: "";
         position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background-image: linear-gradient(180deg, #bb9cff19 0%, #8BA4F919 100%);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(180deg, #bb9cff19 0%, #8ba4f919 100%);
       }
     }
-    
+
     &--range-start {
       &::after {
         border-radius: 50% 0 0 50%;
