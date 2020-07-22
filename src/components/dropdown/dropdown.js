@@ -25,9 +25,20 @@ export function Dropdown(node) {
   }
 
   // dropdown expand / collapse
-  node.addEventListener("click", () => {
+  const toggle = () => {
     node.classList.toggle("dropdown--expanded");
     content.classList.toggle("hidden");
+  };
+
+  const close = () => {
+    node.classList.remove("dropdown--expanded");
+    content.classList.add("hidden");
+  };
+
+  node.addEventListener("click", () => toggle());
+
+  document.addEventListener("click", ({ target }) => {
+    if (!node.contains(target) && !content.contains(target)) close();
   });
 
   // save state data to localStorage
@@ -41,6 +52,8 @@ export function Dropdown(node) {
     localStorage.setItem(id, JSON.stringify(data));
     clear.classList.remove("invisible");
     title.textContent = `${sum} ${getPluralForm(sum, titlePlural)}`;
+
+    close();
   });
 
   // clear state data from localStorage
