@@ -4,7 +4,7 @@ mixin date-picker(props)
   -
     var weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
 
-  .date-picker
+  .date-picker(id=props.id)
     header.date-picker__header
       .date-picker__previous
         .arrow-left
@@ -20,7 +20,7 @@ mixin date-picker(props)
 
     +save-controls({
       classNames: {
-        container: "date-picker__controls date-picker__controls",
+        container: "date-picker__controls",
         clear: "date-picker__control",
         apply: "date-picker__control"
       }

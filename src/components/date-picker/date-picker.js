@@ -3,7 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
   DatePickers.forEach(DatePicker);
 });
 
+/**
+* localStorage is used to save selection data and share it with other components
+* sessionStorage is used for saving internal state, does not use component id
+ * [!] It can cause problems when 2 or more date-pickers are on the same page
+ *      TODO: change it to use current id in the sessionStorage key
+ * [!] clear button does not appear on reload, even if data is present in localStorage
+ *      it's invisible by default and we're not checking for data on load
+ * [?] do we really need both localStorage and sessionStorage?
+ */
+
 function DatePicker(node) {
+  const id = node.id;
+  const [clear, apply] = node.querySelectorAll(".date-picker__control");
   const heading = node.querySelector(".date-picker__heading");
   const previous = node.querySelector(".date-picker__previous");
   const next = node.querySelector(".date-picker__next");
@@ -15,7 +27,7 @@ function DatePicker(node) {
   let month = today.getMonth();
 
   displayCalendarPage(year, month);
-  saveState(year, month);
+  saveDateState(year, month);
 
   previous.addEventListener("click", () => {
     if (month === 0) displayCalendarPage(year - 1, 11);
@@ -27,6 +39,28 @@ function DatePicker(node) {
     else displayCalendarPage(year, month + 1);
   });
 
+  apply.addEventListener("click", () => {
+    const start = sessionStorage.getItem("dp-highlight-start")
+    const end = sessionStorage.getItem("dp-highlight-end")
+
+    if (start) localStorage.setItem(id + "-start", start)
+    if (end) localStorage.setItem(id + "-end", end)
+
+    clear.classList.remove("invisible");
+  })
+
+  clear.addEventListener("click", () => {
+    localStorage.removeItem(id + "-start")
+    localStorage.removeItem(id + "-end")
+
+    clear.classList.add("invisible");
+  })
+
+  function saveDateState(year, month) {
+    sessionStorage.setItem("dp-visible-year", year);
+    sessionStorage.setItem("dp-visible-month", month);
+  }
+
   function displayCalendarPage(newYear, newMonth) {
     const newCalendarPage = CalendarPage(newYear, newMonth);
     heading.textContent = `${MONTHS[newMonth]} ${newYear}`;
@@ -36,7 +70,7 @@ function DatePicker(node) {
     month = newMonth;
     year = newYear;
 
-    saveState(year, month);
+    saveDateState(year, month);
 
     const start = parseInt(sessionStorage.getItem("dp-highlight-start"));
     const end = parseInt(sessionStorage.getItem("dp-highlight-end"));
@@ -67,11 +101,6 @@ function DatePicker(node) {
     }
 
     highlightCellsRange(page, startDate, endDate);
-  }
-
-  function saveState(year, month) {
-    sessionStorage.setItem("dp-visible-year", year);
-    sessionStorage.setItem("dp-visible-month", month);
   }
 }
 
