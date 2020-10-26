@@ -1,0 +1,8 @@
+include ../date-picker/date-picker.pug
+
+mixin date-dropdown(props)
+  -
+    var pickerId = `${props.id}-picker`
+
+  .date-dropdown(id=props.id)
+    +date-picker({id: pickerId})
