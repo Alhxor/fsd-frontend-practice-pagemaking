@@ -1,45 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const dropdowns = document.querySelectorAll(".dropdown");
-  dropdowns.forEach((dropdown) => Dropdown(dropdown));
+  const optionsComponents = document.querySelectorAll(".options");
+  optionsComponents.forEach((optComponent) => Options(optComponent));
 });
 
-export function Dropdown(node) {
+/**
+ * sessionStorage is used to provide information to external blocks (dropdown text, etc.)
+ * localStorage is used to keep tracks of the options values
+ * [?] do we really need both?
+ */
+
+function Options(node) {
   const id = node.id;
-  const title = node.querySelector(".dropdown__select");
-  const defaultTitle = title.textContent;
-  const titlePlural = title.dataset.plural;
-  const content = document.querySelector(`#${id}+.dropdown__content`);
-  const options = content.querySelectorAll(".option");
-  const optionValues = content.querySelectorAll(".option__value");
-  const [clear, apply] = content.querySelectorAll(".dropdown__control");
+
+  // const title = node.querySelector(".dropdown__select");
+  // const defaultTitle = title.textContent;
+  // const titlePlural = title.dataset.plural;
+  // const content = document.querySelector(`#${id}+.dropdown__content`);
+  const dataKey = node.dataset.datakey;
+  let titlePlural = node.dataset.plural;
+  const options = node.querySelectorAll(".option");
+  const optionValues = node.querySelectorAll(".option__value");
+  const [clear, apply] = node.querySelectorAll(".dropdown__control");
 
   // load data from localStorage and render it to content
   const data = JSON.parse(localStorage.getItem(id));
   if (data) {
-    title.textContent = `${data.total} ${getPluralForm(
+    sessionStorage.setItem(dataKey, `${data.total} ${getPluralForm(
       data.total,
       titlePlural
-    )}`;
+    )}`)
     optionValues.forEach((span, idx) => (span.textContent = data.values[idx]));
     clear.classList.remove("invisible");
   }
-
-  // dropdown expand / collapse
-  const toggle = () => {
-    node.classList.toggle("dropdown--expanded");
-    content.classList.toggle("hidden");
-  };
-
-  const close = () => {
-    node.classList.remove("dropdown--expanded");
-    content.classList.add("hidden");
-  };
-
-  node.addEventListener("click", () => toggle());
-
-  document.addEventListener("click", ({ target }) => {
-    if (!node.contains(target) && !content.contains(target)) close();
-  });
 
   // save state data to localStorage
   apply.addEventListener("click", () => {
@@ -51,16 +43,16 @@ export function Dropdown(node) {
     };
     localStorage.setItem(id, JSON.stringify(data));
     clear.classList.remove("invisible");
-    title.textContent = `${sum} ${getPluralForm(sum, titlePlural)}`;
+    sessionStorage.setItem(dataKey, `${sum} ${getPluralForm(sum, titlePlural)}`)
 
-    close();
+    // close();
   });
 
   // clear state data from localStorage
   clear.addEventListener("click", () => {
     localStorage.removeItem(id);
     clear.classList.add("invisible");
-    title.textContent = defaultTitle;
+    sessionStorage.removeItem(dataKey)
     optionValues.forEach((span) => (span.textContent = 0));
   });
 

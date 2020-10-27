@@ -4,7 +4,7 @@ const chai = require("chai");
 const should = chai.should();
 
 // const dropdown = require("./dropdown.js")
-import { Dropdown } from "./dropdown.js";
+import { Dropdown } from "./dropdown.js.js";
 
 // const dropdown = rewire("./dropdown.js");
 

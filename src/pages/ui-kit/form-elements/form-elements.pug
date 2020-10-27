@@ -4,19 +4,55 @@ p
 p
   +dropdown({
     title: "Dropdown", 
-    id: "dropdown-1", 
-
-    select: {
-      title: "Сколько гостей",
-      plural: "гость,гостя,гостей"
-    },
-    
-    options: [
-      {name: "взрослые", value: 0}, 
-      {name: "дети", value: 0}, 
-      {name: "младенцы", value: 0}
-    ]
+    id: "dropdown-0", 
+    dataKey: "dropdown-0",
+    text: "Сколько гостей"
   })
+    +options({
+      id: "options-0",
+      plural: "гость,гостя,гостей",
+      dataKey: "dropdown-0",
+      options: [
+        {name: "взрослые", value: 0}, 
+        {name: "дети", value: 0}, 
+        {name: "младенцы", value: 0}
+      ]
+    })
+
+//- p
+//-   +dropdown-options({
+//-     title: "Dropdown", 
+//-     id: "dropdown-1", 
+
+//-     select: {
+//-       title: "Сколько гостей",
+//-       plural: "гость,гостя,гостей"
+//-     },
+    
+//-     options: [
+//-       {name: "взрослые", value: 0}, 
+//-       {name: "дети", value: 0}, 
+//-       {name: "младенцы", value: 0}
+//-     ]
+//-   })
+
+//- this doesn't really work
+//- p
+//-   +dropdown({
+//-     title: "Dropdown", 
+//-     id: "dropdown-2", 
+
+//-     select: {
+//-       title: "Выбор комнат",
+//-       plural: "спальня,спальни,спален"
+//-     },
+    
+//-     options: [
+//-       {name: "спальни", value: 0}, 
+//-       {name: "кровати", value: 0}, 
+//-       {name: "ванные комнаты", value: 0}
+//-     ]
+//-   })
 
 //- +input({type: "email", id: "email", placeholder: "Email", title: "Text field", description: "default"})
 

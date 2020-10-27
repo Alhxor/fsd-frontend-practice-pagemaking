@@ -1,0 +1,42 @@
+@import "../common/save-controls/save-controls.scss";
+@import "../common/dropdown/dropdown.scss";
+
+.dropdown__controls {
+    padding-top: 12px;
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 12px;
+  line-height: 15px;
+  margin-bottom: 7px;
+
+  &__name {
+    color: $dark100;
+  }
+
+  &__controls {
+    width: 92px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.increment {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid $dark50;
+  color: $dark50;
+
+  &--disabled {
+    border-color: $dark25;
+    color: $dark25;
+  }
+}
+
