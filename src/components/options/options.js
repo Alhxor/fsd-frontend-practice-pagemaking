@@ -7,18 +7,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function Options(node) {
   const dataKey = node.dataset.datakey;
-  const titlePlural = node.dataset.plural;
+  const detailedOptionText = node.dataset.detailed;
   const options = node.querySelectorAll(".option");
+  const optionNames = node.querySelectorAll(".option__name");
   const optionValues = node.querySelectorAll(".option__value");
   const [clear, apply] = node.querySelectorAll(".dropdown__control");
 
   apply.addEventListener("click", () => {
-    let values = [...optionValues].map((span) => parseInt(span.textContent));
-    let sum = values.reduce((x, y) => x + y);
 
-    dispatch(dataKey + "/updateText", {
-      text: `${sum} ${getPluralForm(sum, titlePlural)}`,
-    });
+    const text = (() => {
+      const values = [...optionValues].map((span) => parseInt(span.textContent));
+
+      if (detailedOptionText)
+        return [...optionNames]
+          .map((span, i) =>
+            values[i] !== 0
+              ? `${values[i]} ${getPluralForm(values[i], span.dataset.plural)}`
+              : ""
+          )
+          .filter(opt => opt !== "")
+          .join(", ") + "...";
+
+      const sum = values.reduce((x, y) => x + y);
+      return `${sum} ${getPluralForm(sum, node.dataset.plural)}`;
+    })();
+
+    dispatch(dataKey + "/updateText", { text });
     dispatch(dataKey + "/close");
 
     clear.classList.remove("invisible");

@@ -19,40 +19,26 @@ p
       ]
     })
 
-//- p
-//-   +dropdown-options({
-//-     title: "Dropdown", 
-//-     id: "dropdown-1", 
-
-//-     select: {
-//-       title: "Сколько гостей",
-//-       plural: "гость,гостя,гостей"
-//-     },
-    
-//-     options: [
-//-       {name: "взрослые", value: 0}, 
-//-       {name: "дети", value: 0}, 
-//-       {name: "младенцы", value: 0}
-//-     ]
-//-   })
-
 //- this doesn't really work
-//- p
-//-   +dropdown({
-//-     title: "Dropdown", 
-//-     id: "dropdown-2", 
+p
+  +dropdown({
+    title: "Dropdown (detailed)", 
+    id: "dropdown-2", 
+    dataKey: "dropdown-2",
+    text: "Выбор комнат"
+  })
+    +options({
+      plural: "опций,опции,опций",
+      dataKey: "dropdown-2",
+      detailed: "true",
 
-//-     select: {
-//-       title: "Выбор комнат",
-//-       plural: "спальня,спальни,спален"
-//-     },
+      options: [
+        {name: "спальни", value: 0, plural: "спальня,спальни,спален"}, 
+        {name: "кровати", value: 0, plural: "кровать,кровати,кроватей"}, 
+        {name: "ванные комнаты", value: 0, plural: "ванная комната,ванные комнаты,ванных комнат"}
+      ]
+    })
     
-//-     options: [
-//-       {name: "спальни", value: 0}, 
-//-       {name: "кровати", value: 0}, 
-//-       {name: "ванные комнаты", value: 0}
-//-     ]
-//-   })
 
 //- +input({type: "email", id: "email", placeholder: "Email", title: "Text field", description: "default"})
 

@@ -2,19 +2,19 @@
 //- include ../common/dropdown/dropdown.pug
 include ../common/save-controls/save-controls.pug
 
-mixin option(props, parentId)
+mixin option(props)
   .option
-    span.option__name= props.name
+    span.option__name(data-plural=props.plural)= props.name
     .option__controls
       button.increment(
         class=`${props.value === 0 ? "increment--disabled" : ""}`
       ) -
       span.option__value= props.value
       button.increment +
-  
+
 //- TODO: deal with style dependencies on .input (extract them or something)
 mixin options(props)
-  .options(id=props.id, data-datakey=props.dataKey, data-plural=props.plural)
+  .options(id=props.id, data-datakey=props.dataKey, data-plural=props.plural, data-detailed=props.detailed)
     each item in props.options
       +option(item, props.id)
     +save-controls({
