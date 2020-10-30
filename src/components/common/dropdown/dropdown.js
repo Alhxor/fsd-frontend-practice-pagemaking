@@ -1,15 +1,9 @@
+import { subscribe } from "@/util/events";
+
 document.addEventListener("DOMContentLoaded", () => {
   const dropdowns = document.querySelectorAll(".dropdown");
   dropdowns.forEach((dropdown) => Dropdown(dropdown));
 });
-
-/**
- * [!] Problem: how to receive events from content? (closing, changing title, etc.)
- *      currently we're only talking to it through sessionStorage
- *      solution #1: dispatching custom events?
- *      solution #2: just find the required element and do stuff to it
- *      solution #3: have a special class that other component will apply functionality to
- */
 
 function Dropdown(node) {
   const id = node.id;
@@ -18,15 +12,19 @@ function Dropdown(node) {
   const dataKey = node.dataset.datakey;
   const content = document.querySelector(`#${id}+.dropdown__content`);
 
+  subscribe(dataKey + "/updateText", (payload) => {
+    if (payload.text) text.textContent = payload.text;
+    else text.textContent = defaultText;
+  });
+
+  subscribe(dataKey + "/close", (payload) => {
+    close();
+  });
+
   // dropdown expand / collapse
   const toggle = () => {
     node.classList.toggle("dropdown--expanded");
     content.classList.toggle("hidden");
-
-    let data = sessionStorage.getItem(dataKey)
-    if (data) {
-      text.textContent = data
-    } else text.textContent = defaultText
   };
 
   const close = () => {
