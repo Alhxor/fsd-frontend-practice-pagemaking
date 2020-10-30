@@ -17,10 +17,12 @@ mixin options(props)
   .options(id=props.id, data-datakey=props.dataKey, data-plural=props.plural, data-detailed=props.detailed)
     each item in props.options
       +option(item, props.id)
-    +save-controls({
-      classNames: {
-        container: "dropdown__controls",
-        clear: "dropdown__control",
-        apply: "dropdown__control"
-      }
-    })
+    
+    if props.useControls
+      +save-controls({
+        classNames: {
+          container: "options__controls",
+          clear: "options__control",
+          apply: "options__control"
+        }
+      })

@@ -7,43 +7,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function Options(node) {
   const dataKey = node.dataset.datakey;
-  const detailedOptionText = node.dataset.detailed;
+  const detailedOptionText = node.hasAttribute("data-detailed");
+  // console.log(detailedOptionText);
   const options = node.querySelectorAll(".option");
   const optionNames = node.querySelectorAll(".option__name");
   const optionValues = node.querySelectorAll(".option__value");
-  const [clear, apply] = node.querySelectorAll(".dropdown__control");
 
-  apply.addEventListener("click", () => {
+  const [clear, apply] = node.querySelectorAll(".options__control");
+  const useControls = Boolean(clear && apply);
+  // console.log(useControls)
 
-    const text = (() => {
-      const values = [...optionValues].map((span) => parseInt(span.textContent));
+  const buildText = () => {
+    const values = [...optionValues].map((span) => parseInt(span.textContent));
 
-      if (detailedOptionText)
-        return [...optionNames]
-          .map((span, i) =>
-            values[i] !== 0
-              ? `${values[i]} ${getPluralForm(values[i], span.dataset.plural)}`
-              : ""
-          )
-          .filter(opt => opt !== "")
-          .join(", ") + "...";
+    if (detailedOptionText) {
+      const out = [...optionNames]
+        .map((span, i) =>
+          values[i] !== 0
+            ? `${values[i]} ${getPluralForm(values[i], span.dataset.plural)}`
+            : ""
+        )
+        .filter((opt) => opt !== "")
+        .join(", ");
+      if (out) return out + "...";
+      return "";
+    }
 
-      const sum = values.reduce((x, y) => x + y);
-      return `${sum} ${getPluralForm(sum, node.dataset.plural)}`;
-    })();
+    const sum = values.reduce((x, y) => x + y);
+    return `${sum} ${getPluralForm(sum, node.dataset.plural)}`;
+  };
 
+  const updateListener = () => {
+    const text = buildText();
     dispatch(dataKey + "/updateText", { text });
+  };
+
+  const applyListener = () => {
+    updateListener();
     dispatch(dataKey + "/close");
-
     clear.classList.remove("invisible");
-  });
+  };
 
-  clear.addEventListener("click", () => {
+  const clearListener = () => {
     dispatch(dataKey + "/updateText");
 
     clear.classList.add("invisible");
     optionValues.forEach((span) => (span.textContent = 0));
-  });
+  };
+
+  if (useControls) {
+    apply.addEventListener("click", applyListener);
+    clear.addEventListener("click", clearListener);
+  }
 
   // events for - and + buttons in options
   options.forEach((option) => {
@@ -56,6 +71,11 @@ function Options(node) {
     increment.addEventListener("click", () =>
       changeValueByOne(decrement, value, (increment = true))
     );
+
+    if (!useControls) {
+      decrement.addEventListener("click", updateListener);
+      increment.addEventListener("click", updateListener);
+    }
   });
 }
 
