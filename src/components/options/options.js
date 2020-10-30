@@ -1,58 +1,33 @@
+import { dispatch } from "@/util/events";
+
 document.addEventListener("DOMContentLoaded", () => {
   const optionsComponents = document.querySelectorAll(".options");
   optionsComponents.forEach((optComponent) => Options(optComponent));
 });
 
-/**
- * sessionStorage is used to provide information to external blocks (dropdown text, etc.)
- * localStorage is used to keep tracks of the options values
- * [?] do we really need both?
- */
-
 function Options(node) {
-  const id = node.id;
-
-  // const title = node.querySelector(".dropdown__select");
-  // const defaultTitle = title.textContent;
-  // const titlePlural = title.dataset.plural;
-  // const content = document.querySelector(`#${id}+.dropdown__content`);
   const dataKey = node.dataset.datakey;
   let titlePlural = node.dataset.plural;
   const options = node.querySelectorAll(".option");
   const optionValues = node.querySelectorAll(".option__value");
   const [clear, apply] = node.querySelectorAll(".dropdown__control");
 
-  // load data from localStorage and render it to content
-  const data = JSON.parse(localStorage.getItem(id));
-  if (data) {
-    sessionStorage.setItem(dataKey, `${data.total} ${getPluralForm(
-      data.total,
-      titlePlural
-    )}`)
-    optionValues.forEach((span, idx) => (span.textContent = data.values[idx]));
-    clear.classList.remove("invisible");
-  }
-
-  // save state data to localStorage
   apply.addEventListener("click", () => {
     let values = [...optionValues].map((span) => parseInt(span.textContent));
     let sum = values.reduce((x, y) => x + y);
-    let data = {
-      total: sum,
-      values: values,
-    };
-    localStorage.setItem(id, JSON.stringify(data));
-    clear.classList.remove("invisible");
-    sessionStorage.setItem(dataKey, `${sum} ${getPluralForm(sum, titlePlural)}`)
 
-    // close();
+    dispatch(dataKey + "/updateText", {
+      text: `${sum} ${getPluralForm(sum, titlePlural)}`,
+    });
+    dispatch(dataKey + "/close");
+
+    clear.classList.remove("invisible");
   });
 
-  // clear state data from localStorage
   clear.addEventListener("click", () => {
-    localStorage.removeItem(id);
+    dispatch(dataKey + "/updateText");
+
     clear.classList.add("invisible");
-    sessionStorage.removeItem(dataKey)
     optionValues.forEach((span) => (span.textContent = 0));
   });
 
