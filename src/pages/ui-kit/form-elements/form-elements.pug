@@ -42,11 +42,20 @@ p
       ]
     })
     
+p
+  +dropdown({
+    title: "Dropdown (calendar)", 
+    id: "dropdown-3", 
+    dataKey: "dropdown-3",
+    text: "Выбор даты"
+  })
+    +date-picker({id: "date-picker-1", dataKey: "dropdown-3"})
+
 
 //- +input({type: "email", id: "email", placeholder: "Email", title: "Text field", description: "default"})
 
 p
   +masked-input({type: "text", id: "masked", placeholder: "ДД.ММ.ГГГГ", title: "Masked text field"})
 
-p
-  +date-dropdown({id: "date-dropdown-1", placeholder: "ДД.ММ.ГГГГ", title: "Date dropdown"})
+//- p
+  //- +date-dropdown({id: "date-dropdown-1", placeholder: "ДД.ММ.ГГГГ", title: "Date dropdown"})

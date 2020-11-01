@@ -2,7 +2,15 @@
 @import "../common/dropdown/dropdown.scss";
 
 .options__controls {
-    padding-top: 12px;
+  padding-top: 12px;
+}
+
+.options {
+  padding: 4px 5px 5px 14px;
+
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .option {
@@ -39,4 +47,3 @@
     color: $dark25;
   }
 }
-

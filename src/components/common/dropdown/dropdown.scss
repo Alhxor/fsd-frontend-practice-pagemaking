@@ -64,12 +64,12 @@
 
     background-color: #ffffff;
 
-    padding: 4px 5px 5px 14px;
     border: 1px solid $dark50;
     border-radius: 0 0 4px 4px;
-    
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
+
+    &--separate {
+      top: 50px;
+      border-radius: 4px;
+    }
   }
 }
