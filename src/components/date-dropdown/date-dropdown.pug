@@ -3,6 +3,29 @@ include ../date-picker/date-picker.pug
 mixin date-dropdown(props)
   -
     var pickerId = `${props.id}-picker`
+    var contentId = `${props.id}-content`
+    var dropLeftId = `${props.id}-left`
+    var dropRightId = `${props.id}-right`
 
-  .date-dropdown(id=props.id)
-    +date-picker({id: pickerId})
+  .date-dropdown(id=props.id, class="container-relative")
+    .date-dropdown__half
+      +dropdown({
+        title: props.title.left,
+        id: dropLeftId,
+        dataKey: props.dataKey,
+        text: props.text,
+        contentId: contentId
+      })
+    .date-dropdown__half
+      +dropdown({
+        title: props.title.right,
+        id: dropRightId,
+        dataKey: props.dataKey,
+        text: props.text,
+        contentId: contentId
+      })
+    +dropdown-content({
+      id: contentId,
+      dataKey: dataKey
+    })
+      +date-picker({id: pickerId})

@@ -1,9 +1,3 @@
-
-.dropdown-container {
-  position: relative;
-  width: 320px;
-}
-
 .dropdown {
   display: flex;
   justify-content: space-between;
@@ -57,7 +51,7 @@
 
   &__content {
     position: absolute;
-    top: 44px;
+    top: 64px;
     z-index: 100;
     width: 100%;
     box-sizing: border-box;

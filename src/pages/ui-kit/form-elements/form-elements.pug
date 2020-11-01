@@ -2,59 +2,82 @@ p
   +input({type: "email", id: "email", placeholder: "Email", title: "Text field"})
 
 p
-  +dropdown({
-    title: "Dropdown", 
-    id: "dropdown-0", 
-    dataKey: "dropdown-0",
-    text: "Сколько гостей"
-  })
-    +options({
-      id: "options-0",
-      plural: "гость,гостя,гостей",
+  .container-relative
+    +dropdown({
+      title: "Dropdown", 
+      id: "dropdown-0", 
       dataKey: "dropdown-0",
-      detailed: false,
-      useControls: true,
-      options: [
-        {name: "взрослые", value: 0}, 
-        {name: "дети", value: 0}, 
-        {name: "младенцы", value: 0}
-      ]
+      text: "Сколько гостей",
+      contentId: "dropdown-0-content"
     })
+    +dropdown-content({
+      id: "dropdown-0-content",
+      dataKey: "dropdown-0",
+    })
+      +options({
+        id: "options-0",
+        plural: "гость,гостя,гостей",
+        dataKey: "dropdown-0",
+        detailed: false,
+        useControls: true,
+        options: [
+          {name: "взрослые", value: 0}, 
+          {name: "дети", value: 0}, 
+          {name: "младенцы", value: 0}
+        ]
+      })
 
-//- this doesn't really work
 p
-  +dropdown({
-    title: "Dropdown (detailed)", 
-    id: "dropdown-2", 
-    dataKey: "dropdown-2",
-    text: "Выбор комнат"
-  })
-    +options({
-      plural: "опций,опции,опций",
+  .container-relative
+    +dropdown({
+      title: "Dropdown (detailed)", 
+      id: "dropdown-2", 
       dataKey: "dropdown-2",
-      detailed: true,
-      useControls: false,
-
-      options: [
-        {name: "спальни", value: 0, plural: "спальня,спальни,спален"}, 
-        {name: "кровати", value: 0, plural: "кровать,кровати,кроватей"}, 
-        {name: "ванные комнаты", value: 0, plural: "ванная комната,ванные комнаты,ванных комнат"}
-      ]
+      text: "Выбор комнат",
+      contentId: "dropdown-2-content"
     })
-    
-p
-  +dropdown({
-    title: "Dropdown (calendar)", 
-    id: "dropdown-3", 
-    dataKey: "dropdown-3",
-    text: "Выбор даты"
-  })
-    +date-picker({id: "date-picker-1", dataKey: "dropdown-3"})
 
+    +dropdown-content({
+      id: "dropdown-2-content",
+      dataKey: "dropdown-2"
+    })
+      +options({
+        plural: "опций,опции,опций",
+        dataKey: "dropdown-2",
+        detailed: true,
+        useControls: false,
+
+        options: [
+          {name: "спальни", value: 0, plural: "спальня,спальни,спален"}, 
+          {name: "кровати", value: 0, plural: "кровать,кровати,кроватей"}, 
+          {name: "ванные комнаты", value: 0, plural: "ванная комната,ванные комнаты,ванных комнат"}
+        ]
+      })
+    
+//- p
+//-   +dropdown({
+//-     title: "Dropdown (calendar)", 
+//-     id: "dropdown-3", 
+//-     dataKey: "dropdown-3",
+//-     text: "Выбор даты",
+//-     contentId: "dropdown-3-content"
+//-   })
+//-     +date-picker({id: "date-picker-1", dataKey: "dropdown-3"})
+
+p
+  +date-dropdown({
+    title: {
+      left: "Date left",
+      right: "Date right"
+    },
+    id: "date-dropdown-0",
+    dataKey: "date-dropdown-0",
+    text: "ДД.ММ.ГГГГ"
+  })
 
 //- +input({type: "email", id: "email", placeholder: "Email", title: "Text field", description: "default"})
 
-p
+//- p
   +masked-input({type: "text", id: "masked", placeholder: "ДД.ММ.ГГГГ", title: "Masked text field"})
 
 //- p

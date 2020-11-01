@@ -10,7 +10,8 @@ function Dropdown(node) {
   const text = node.querySelector(".dropdown__text");
   const defaultText = text.textContent;
   const dataKey = node.dataset.datakey;
-  const content = document.querySelector(`#${id}+.dropdown__content`);
+  // const content = document.querySelector(`#${id}+.dropdown__content`);
+  const content = document.querySelector(`#${node.dataset.contentid}`)
 
   subscribe(dataKey + "/updateText", (payload) => {
     if (payload.text) text.textContent = payload.text;
@@ -35,7 +36,8 @@ function Dropdown(node) {
   node.addEventListener("click", () => toggle());
 
   // collapse when user clicks the page
-  document.addEventListener("click", ({ target }) => {
-    if (!node.contains(target) && !content.contains(target)) close();
-  });
+  // [!] this is adding a new document listener for EVERY dropdown, needs rewrite
+  // document.addEventListener("click", ({ target }) => {
+  //   if (!node.contains(target) && !content.contains(target)) close();
+  // });
 }
