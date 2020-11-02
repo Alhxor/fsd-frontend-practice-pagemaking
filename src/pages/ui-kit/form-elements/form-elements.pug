@@ -3,6 +3,7 @@ include /components/options-dropdown/options-dropdown.pug
 include /components/masked-input/masked-input.pug
 include /components/date-picker/date-picker.pug
 include /components/date-dropdown/date-dropdown.pug
+include /components/filter-date-dropdown/filter-date-dropdown.pug
 
 p
   +input({type: "email", id: "email", placeholder: "Email", title: "Text field"})
@@ -48,6 +49,14 @@ p
     id: "date-dropdown-0",
     dataKey: "date-dropdown-0",
     text: "ДД.ММ.ГГГГ"
+  })
+
+p
+  +filter-date-dropdown({
+    title: "Filter date dropdown",
+    id: "filter-date-dropdown-0",
+    dataKey: "filter-date-dropdown-0",
+    text: "Выберите даты"
   })
 
 //- +input({type: "email", id: "email", placeholder: "Email", title: "Text field", description: "default"})
