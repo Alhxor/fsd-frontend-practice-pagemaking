@@ -26,6 +26,7 @@ mixin date-dropdown(props)
       })
     +dropdown-content({
       id: contentId,
-      dataKey: dataKey
+      dataKey: dataKey,
+      modifier: "separate"
     })
       +date-picker({id: pickerId})

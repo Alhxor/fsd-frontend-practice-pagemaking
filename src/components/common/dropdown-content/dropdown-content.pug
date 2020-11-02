@@ -1,5 +1,9 @@
 mixin dropdown-content(props)
-  .dropdown__content(id=props.id, data-dataKey=props.dataKey).hidden
+  .dropdown__content(
+    id=props.id,
+    data-dataKey=props.dataKey,
+    class=props.modifier ? "dropdown__content--" + props.modifier : ""
+  ).hidden
     if block
       block
 

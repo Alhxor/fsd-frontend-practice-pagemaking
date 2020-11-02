@@ -22,8 +22,11 @@
     border-color: $dark50;
   }
 
-  &--expanded {
+  &--highlight-border {
     border-color: $dark50;
+  }
+
+  &--sharpen-bottom-border {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
@@ -62,7 +65,7 @@
     border-radius: 0 0 4px 4px;
 
     &--separate {
-      top: 50px;
+      top: 70px;
       border-radius: 4px;
     }
   }

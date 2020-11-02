@@ -4,14 +4,7 @@ mixin dropdown(props)
       span.input__title= props.title
       span.input__description= props.description
 
-    //- .dropdown-container
-    //- button.dropdown.dropdown--expanded(id=props.id) //- alternate state
     button.dropdown(id=props.id, data-datakey=props.dataKey, data-contentid=props.contentId)
       span.dropdown__text= props.text
-      //- span.dropdown__select(data-plural=props.select.plural)= props.select.title
       i.dropdown__icon-expand
       
-    //- .dropdown__content //- alternate state
-    //- +content({dataKey: props.dataKey})
-    //-   if block
-    //-     block
