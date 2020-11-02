@@ -2,37 +2,29 @@ include /components/common/dropdown/dropdown.pug
 include /components/common/dropdown-content/dropdown-content.pug
 include /components/date-picker/date-picker.pug
 
-mixin date-dropdown(props)
+mixin date-dropdown({ id, dataKey, title, text })
   -
-    var pickerId = `${props.id}-picker`
-    var contentId = `${props.id}-content`
-    var dropLeftId = `${props.id}-left`
-    var dropRightId = `${props.id}-right`
+    var pickerId = `${id}-picker`
+    var contentId = `${id}-content`
+    var dropLeftId = `${id}-left`
+    var dropRightId = `${id}-right`
 
-  .date-dropdown(
-    id=props.id, 
-    class="container-relative",
-    data-datakey=props.dataKey
-  )
+  .date-dropdown(id=id, class="container-relative", data-datakey=dataKey)
     .date-dropdown__half
       +dropdown({
-        title: props.title.left,
+        title: title.left,
         id: dropLeftId,
-        dataKey: props.dataKey,
-        text: props.text,
-        contentId: contentId
+        dataKey, text, contentId
       })
     .date-dropdown__half
       +dropdown({
-        title: props.title.right,
+        title: title.right,
         id: dropRightId,
-        dataKey: props.dataKey,
-        text: props.text,
-        contentId: contentId
+        dataKey, text, contentId
       })
     +dropdown-content({
       id: contentId,
-      dataKey: dataKey,
+      dataKey,
       modifier: "separate"
     })
-      +date-picker({id: pickerId, dataKey: props.dataKey})
+      +date-picker({id: pickerId, dataKey})

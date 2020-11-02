@@ -1,22 +1,22 @@
 include /components/common/save-controls/save-controls.pug
 
-mixin option(props)
+mixin option({ name, value })
   .option
-    span.option__name(data-plural=props.plural)= props.name
+    span.option__name(data-plural=plural)= name
     .option__controls
       button.increment(
-        class=`${props.value === 0 ? "increment--disabled" : ""}`
+        class=`${value === 0 ? "increment--disabled" : ""}`
       ) -
-      span.option__value= props.value
+      span.option__value= value
       button.increment +
 
 //- TODO: deal with style dependencies on .input (extract them or something)
-mixin options(props)
-  .options(id=props.id, data-datakey=props.dataKey, data-plural=props.plural, data-detailed=props.detailed)
-    each item in props.options
-      +option(item, props.id)
+mixin options({ id, dataKey, plural, detailed, options, useControls })
+  .options(id=id, data-datakey=dataKey, data-plural=plural, data-detailed=detailed)
+    each item in options
+      +option(item, id)
     
-    if props.useControls
+    if useControls
       +save-controls({
         classNames: {
           container: "options__controls",

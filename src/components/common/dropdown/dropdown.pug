@@ -1,10 +1,10 @@
-mixin dropdown(props)
+mixin dropdown({ id, title, description, dataKey, contentId, text })
   .input
-    label.input__label(for=props.id)
-      span.input__title= props.title
-      span.input__description= props.description
+    label.input__label(for=id)
+      span.input__title= title
+      span.input__description= description
 
-    button.dropdown(id=props.id, data-datakey=props.dataKey, data-contentid=props.contentId)
-      span.dropdown__text= props.text
+    button.dropdown(id=id, data-datakey=dataKey, data-contentid=contentId)
+      span.dropdown__text= text
       i.dropdown__icon-expand
       

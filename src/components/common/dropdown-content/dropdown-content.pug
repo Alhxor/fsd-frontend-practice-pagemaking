@@ -1,8 +1,8 @@
-mixin dropdown-content(props)
+mixin dropdown-content({ id, dataKey, modifier })
   .dropdown__content(
-    id=props.id,
-    data-dataKey=props.dataKey,
-    class=props.modifier ? "dropdown__content--" + props.modifier : ""
+    id=id,
+    data-dataKey=dataKey,
+    class=modifier ? "dropdown__content--" + modifier : ""
   ).hidden
     if block
       block

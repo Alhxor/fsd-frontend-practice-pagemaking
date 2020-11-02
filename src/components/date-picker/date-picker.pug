@@ -1,10 +1,10 @@
 include ../common/save-controls/save-controls.pug
 
-mixin date-picker(props)
+mixin date-picker({ id, dataKey })
   -
     var weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
 
-  .date-picker(id=props.id, data-datakey=props.dataKey)
+  .date-picker(id=id, data-datakey=dataKey)
     header.date-picker__header
       .date-picker__previous
         .arrow-left

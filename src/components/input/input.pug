@@ -1,6 +1,6 @@
-mixin input(props)
+mixin input({ id, title, description, type, placeholder })
   .input
-    label.input__label(for=props.id)
-      span.input__title= props.title
-      span.input__description= props.description
-    input.input__field(type=props.type, placeholder=props.placeholder, id=props.id)
+    label.input__label(for=id)
+      span.input__title= title
+      span.input__description= description
+    input.input__field(type=type, placeholder=placeholder, id=id)
