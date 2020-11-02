@@ -8,12 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
 function Options(node) {
   const dataKey = node.dataset.datakey;
   const detailedOptionText = node.hasAttribute("data-detailed");
-  // console.log(detailedOptionText);
   const options = node.querySelectorAll(".option");
   const optionNames = node.querySelectorAll(".option__name");
   const optionValues = node.querySelectorAll(".option__value");
-<<<<<<< HEAD
-
   const [clear, apply] = node.querySelectorAll(".options__control");
   const useControls = Boolean(clear && apply);
   // console.log(useControls)
@@ -22,15 +19,16 @@ function Options(node) {
     const values = [...optionValues].map((span) => parseInt(span.textContent));
 
     if (detailedOptionText) {
-      const out = [...optionNames]
+      let out = [...optionNames]
         .map((span, i) =>
           values[i] !== 0
             ? `${values[i]} ${getPluralForm(values[i], span.dataset.plural)}`
             : ""
         )
-        .filter((opt) => opt !== "")
-        .join(", ");
-      if (out) return out + "...";
+        .filter((opt) => opt !== "");
+
+      if (out.length > 2) out = out.slice(0, 2);
+      if (out.length > 0) return out.join(", ") + "...";
       return "";
     }
 
@@ -51,29 +49,28 @@ function Options(node) {
 
   const clearListener = () => {
     dispatch(dataKey + "/updateText");
-
-=======
-  const [clear, apply] = node.querySelectorAll(".dropdown__control");
-
-  apply.addEventListener("click", () => {
-    let values = [...optionValues].map((span) => parseInt(span.textContent));
-    let sum = values.reduce((x, y) => x + y);
-
-    dispatch(dataKey + "/updateText", {
-      text: `${sum} ${getPluralForm(sum, titlePlural)}`,
-    });
-    dispatch(dataKey + "/close");
-
-    clear.classList.remove("invisible");
-  });
-
-  clear.addEventListener("click", () => {
-    dispatch(dataKey + "/updateText");
-
->>>>>>> dc7cdac9dea8868d1aa1ccb8e2415cf7f874f5a4
-    clear.classList.add("invisible");
     optionValues.forEach((span) => (span.textContent = 0));
+    clear.classList.add("invisible");
   };
+
+  // apply.addEventListener("click", () => {
+  //   let values = [...optionValues].map((span) => parseInt(span.textContent));
+  //   let sum = values.reduce((x, y) => x + y);
+
+  //   dispatch(dataKey + "/updateText", {
+  //     text: `${sum} ${getPluralForm(sum, titlePlural)}`,
+  //   });
+  //   dispatch(dataKey + "/close");
+
+  //   clear.classList.remove("invisible");
+  // });
+
+  // clear.addEventListener("click", () => {
+  //   dispatch(dataKey + "/updateText");
+
+  //   clear.classList.add("invisible");
+  //   optionValues.forEach((span) => (span.textContent = 0));
+  // });
 
   if (useControls) {
     apply.addEventListener("click", applyListener);
