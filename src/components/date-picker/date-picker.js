@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
  * sessionStorage is used for saving internal state, does not use component id
  * [!] It can cause problems when 2 or more date-pickers are on the same page
  *      TODO: change it to use current id in the sessionStorage key
+ * [!] BUG: if curren highlighting is between years
+ *      - when going back a page highlighting disappears
+ *      - pages 'in between' are not highlighted
+ *      - on single page december / january highlights the whole page
+ *      - more potential issues
  */
 
 function DatePicker(node) {
@@ -88,15 +93,13 @@ function DatePicker(node) {
     if (startCell) startCell.classList.add(classStart);
     if (endCell) endCell.classList.add(classEnd);
 
+    // TODO: make highlightCellsRange take care of this case
     if (!startCell && !endCell) {
-      if (
-        month >= startDate.getMonth() &&
-        month <= endDate.getMonth() &&
-        year >= startDate.getFullYear() &&
-        year <= endDate.getFullYear()
-      )
+      let pageDate = new Date(year, month, 15);
+      if (startDate < pageDate && endDate > pageDate) {
         highlightCellsRange(page, startDate, endDate);
-      else return;
+        return;
+      } else return;
     }
 
     highlightCellsRange(page, startDate, endDate);
@@ -131,8 +134,8 @@ function saveHighlightState({ start, end }) {
 }
 
 function loadHighlightState() {
-  const start = sessionStorage.getItem("dp-highlight-start");
-  const end = sessionStorage.getItem("dp-highlight-end");
+  const start = parseInt(sessionStorage.getItem("dp-highlight-start"));
+  const end = parseInt(sessionStorage.getItem("dp-highlight-end"));
   return [start, end];
 }
 
@@ -173,6 +176,7 @@ function createCellRange(page, start, end) {
 
   let cellStart = getCellFromDate(start, page);
   let cellEnd = getCellFromDate(end, page);
+  // console.log(cellStart, cellEnd)
   let range = new Range();
 
   if (cellStart) range.setStart(cellStart, 0);
@@ -222,6 +226,7 @@ function smartCellHighlight(clickedCell, cellDate) {
     } else clickedCell.classList.add(classEnd);
 
     saveHighlightState({ start, end });
+    // console.log(start, end)
 
     highlightCellsRange(page, new Date(start), new Date(end));
 
