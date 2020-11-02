@@ -50,7 +50,7 @@ function Options(node) {
     dispatch(dataKey + "/updateText");
     optionValues.forEach((span) => (span.textContent = 0));
     clear.classList.add("invisible");
-  };
+  }
 
   if (useControls) {
     apply.addEventListener("click", applyListener);
