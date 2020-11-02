@@ -1,20 +1,21 @@
+import { dispatch } from "@/util/events";
+
 document.addEventListener("DOMContentLoaded", () => {
   const DatePickers = document.querySelectorAll(".date-picker");
   DatePickers.forEach(DatePicker);
 });
 
 /**
-* localStorage is used to save selection data and share it with other components
-* sessionStorage is used for saving internal state, does not use component id
+ * localStorage NO LONGER used to save selection data and share it with other components
+ *  (dispatch utility is used instead)
+ * sessionStorage is used for saving internal state, does not use component id
  * [!] It can cause problems when 2 or more date-pickers are on the same page
  *      TODO: change it to use current id in the sessionStorage key
- * [!] clear button does not appear on reload, even if data is present in localStorage
- *      it's invisible by default and we're not checking for data on load
- * [?] do we really need both localStorage and sessionStorage?
  */
 
 function DatePicker(node) {
   const id = node.id;
+  const dataKey = node.dataset.datakey;
   const [clear, apply] = node.querySelectorAll(".date-picker__control");
   const heading = node.querySelector(".date-picker__heading");
   const previous = node.querySelector(".date-picker__previous");
@@ -40,21 +41,26 @@ function DatePicker(node) {
   });
 
   apply.addEventListener("click", () => {
-    const start = sessionStorage.getItem("dp-highlight-start")
-    const end = sessionStorage.getItem("dp-highlight-end")
+    const start = sessionStorage.getItem("dp-highlight-start");
+    const end = sessionStorage.getItem("dp-highlight-end");
 
-    if (start) localStorage.setItem(id + "-start", start)
-    if (end) localStorage.setItem(id + "-end", end)
+    dispatch(dataKey + "/setStartDate", { date: start });
+    dispatch(dataKey + "/setEndDate", { date: end });
+    // if (start) localStorage.setItem(id + "-start", start);
+    // if (end) localStorage.setItem(id + "-end", end);
 
     clear.classList.remove("invisible");
-  })
+  });
 
   clear.addEventListener("click", () => {
-    localStorage.removeItem(id + "-start")
-    localStorage.removeItem(id + "-end")
+    dispatch(dataKey + "/setStartDate");
+    dispatch(dataKey + "/setEndDate");
+
+    // localStorage.removeItem(id + "-start");
+    // localStorage.removeItem(id + "-end");
 
     clear.classList.add("invisible");
-  })
+  });
 
   function saveDateState(year, month) {
     sessionStorage.setItem("dp-visible-year", year);
@@ -226,7 +232,7 @@ function highlightCellsRange(page, start, end) {
   const cells = page.querySelectorAll(".days-grid__cell");
   const highlightRange = createCellRange(page, start, end);
 
-  for (cell of cells) {
+  for (let cell of cells) {
     if (highlightRange.isPointInRange(cell, 0))
       cell.classList.add(classHighlight);
   }
@@ -302,14 +308,14 @@ function getCellFromDate(date, page) {
   if (difference > 28 * msDay) return null;
 
   if (month === pageMonth) {
-    for (cell of page.children)
+    for (let cell of page.children)
       if (
         parseInt(cell.textContent) === day &&
         !cell.classList.contains("days-grid__cell--not-this-month")
       )
         return cell;
   } else
-    for (cell of page.children)
+    for (let cell of page.children)
       if (
         parseInt(cell.textContent) === day &&
         cell.classList.contains("days-grid__cell--not-this-month")

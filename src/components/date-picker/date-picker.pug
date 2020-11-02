@@ -4,7 +4,7 @@ mixin date-picker(props)
   -
     var weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
 
-  .date-picker(id=props.id)
+  .date-picker(id=props.id, data-datakey=props.dataKey)
     header.date-picker__header
       .date-picker__previous
         .arrow-left

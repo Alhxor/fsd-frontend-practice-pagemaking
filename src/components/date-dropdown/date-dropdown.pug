@@ -7,7 +7,11 @@ mixin date-dropdown(props)
     var dropLeftId = `${props.id}-left`
     var dropRightId = `${props.id}-right`
 
-  .date-dropdown(id=props.id, class="container-relative")
+  .date-dropdown(
+    id=props.id, 
+    class="container-relative",
+    data-datakey=props.dataKey
+  )
     .date-dropdown__half
       +dropdown({
         title: props.title.left,
@@ -29,4 +33,4 @@ mixin date-dropdown(props)
       dataKey: dataKey,
       modifier: "separate"
     })
-      +date-picker({id: pickerId})
+      +date-picker({id: pickerId, dataKey: props.dataKey})
