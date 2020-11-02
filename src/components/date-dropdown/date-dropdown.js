@@ -1,3 +1,4 @@
+import "@/components/common/dropdown/dropdown"
 import { subscribe } from "@/util/events";
 
 document.addEventListener("DOMContentLoaded", () => {

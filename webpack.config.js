@@ -29,7 +29,13 @@ module.exports = {
       // },
       {
         test: /\.pug$/,
-        use: ["pug-loader"],
+        use: {
+          loader: "pug-loader",
+          options: {
+            root: path.resolve(__dirname, "src"),
+          },
+        },
+        // use: ["pug-loader"],
       },
       {
         test: /\.s[ac]ss$/,
