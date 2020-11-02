@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
  * sessionStorage is used for saving internal state, does not use component id
  * [!] It can cause problems when 2 or more date-pickers are on the same page
  *      TODO: change it to use current id in the sessionStorage key
+ * [!] BUG: if curren highlighting is between years
+ *      - when going back a page highlighting disappears
+ *      - pages 'in between' are not highlighted
+ *      - on single page december / january highlights the whole page
+ *      - more potential issues
  */
 
 function DatePicker(node) {
