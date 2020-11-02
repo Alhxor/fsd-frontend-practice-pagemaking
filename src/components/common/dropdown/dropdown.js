@@ -29,6 +29,15 @@ function Dropdown(node) {
     isOpen = true;
   });
 
+  subscribe(dataKey + "/updateText", (payload) => {
+    if (payload.text) text.textContent = payload.text;
+    else text.textContent = defaultText;
+  });
+
+  subscribe(dataKey + "/close", (payload) => {
+    close();
+  });
+
   // dropdown expand / collapse
   const toggle = () => {
     if (isOpen) dispatch(dataKey + "/close");
