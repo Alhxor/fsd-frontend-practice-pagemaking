@@ -171,7 +171,6 @@ function createCellRange(page, start, end) {
 
   let cellStart = getCellFromDate(start, page);
   let cellEnd = getCellFromDate(end, page);
-  // console.log(cellStart, cellEnd)
   let range = new Range();
 
   if (cellStart) range.setStart(cellStart, 0);
