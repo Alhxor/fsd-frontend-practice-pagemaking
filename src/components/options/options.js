@@ -8,15 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
 function Options(node) {
   const dataKey = node.dataset.datakey;
   const detailedOptionText = node.hasAttribute("data-detailed");
-  // console.log(detailedOptionText);
   const options = node.querySelectorAll(".option");
   const optionNames = node.querySelectorAll(".option__name");
   const optionValues = node.querySelectorAll(".option__value");
-<<<<<<< HEAD
-
   const [clear, apply] = node.querySelectorAll(".options__control");
   const useControls = Boolean(clear && apply);
-  // console.log(useControls)
 
   const buildText = () => {
     const values = [...optionValues].map((span) => parseInt(span.textContent));
@@ -51,29 +47,9 @@ function Options(node) {
 
   const clearListener = () => {
     dispatch(dataKey + "/updateText");
-
-=======
-  const [clear, apply] = node.querySelectorAll(".dropdown__control");
-
-  apply.addEventListener("click", () => {
-    let values = [...optionValues].map((span) => parseInt(span.textContent));
-    let sum = values.reduce((x, y) => x + y);
-
-    dispatch(dataKey + "/updateText", {
-      text: `${sum} ${getPluralForm(sum, titlePlural)}`,
-    });
-    dispatch(dataKey + "/close");
-
-    clear.classList.remove("invisible");
-  });
-
-  clear.addEventListener("click", () => {
-    dispatch(dataKey + "/updateText");
-
->>>>>>> dc7cdac9dea8868d1aa1ccb8e2415cf7f874f5a4
-    clear.classList.add("invisible");
     optionValues.forEach((span) => (span.textContent = 0));
-  };
+    clear.classList.add("invisible");
+  }
 
   if (useControls) {
     apply.addEventListener("click", applyListener);
