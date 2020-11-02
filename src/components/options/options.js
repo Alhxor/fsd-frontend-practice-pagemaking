@@ -13,7 +13,6 @@ function Options(node) {
   const optionValues = node.querySelectorAll(".option__value");
   const [clear, apply] = node.querySelectorAll(".options__control");
   const useControls = Boolean(clear && apply);
-  // console.log(useControls)
 
   const buildText = () => {
     const values = [...optionValues].map((span) => parseInt(span.textContent));
@@ -52,25 +51,6 @@ function Options(node) {
     optionValues.forEach((span) => (span.textContent = 0));
     clear.classList.add("invisible");
   };
-
-  // apply.addEventListener("click", () => {
-  //   let values = [...optionValues].map((span) => parseInt(span.textContent));
-  //   let sum = values.reduce((x, y) => x + y);
-
-  //   dispatch(dataKey + "/updateText", {
-  //     text: `${sum} ${getPluralForm(sum, titlePlural)}`,
-  //   });
-  //   dispatch(dataKey + "/close");
-
-  //   clear.classList.remove("invisible");
-  // });
-
-  // clear.addEventListener("click", () => {
-  //   dispatch(dataKey + "/updateText");
-
-  //   clear.classList.add("invisible");
-  //   optionValues.forEach((span) => (span.textContent = 0));
-  // });
 
   if (useControls) {
     apply.addEventListener("click", applyListener);
