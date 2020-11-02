@@ -1,4 +1,4 @@
-import { dispatch } from "@/util/events";
+import { subscribe, dispatch } from "@/util/events";
 
 document.addEventListener("DOMContentLoaded", () => {
   const DatePickers = document.querySelectorAll(".date-picker");
@@ -41,23 +41,17 @@ function DatePicker(node) {
   });
 
   apply.addEventListener("click", () => {
-    const start = sessionStorage.getItem("dp-highlight-start");
-    const end = sessionStorage.getItem("dp-highlight-end");
+    const [start, end] = loadHighlightState();
 
     dispatch(dataKey + "/setStartDate", { date: start });
     dispatch(dataKey + "/setEndDate", { date: end });
-    // if (start) localStorage.setItem(id + "-start", start);
-    // if (end) localStorage.setItem(id + "-end", end);
 
-    clear.classList.remove("invisible");
+    if (start || end) clear.classList.remove("invisible");
   });
 
   clear.addEventListener("click", () => {
     dispatch(dataKey + "/setStartDate");
     dispatch(dataKey + "/setEndDate");
-
-    // localStorage.removeItem(id + "-start");
-    // localStorage.removeItem(id + "-end");
 
     clear.classList.add("invisible");
   });
@@ -78,8 +72,7 @@ function DatePicker(node) {
 
     saveDateState(year, month);
 
-    const start = parseInt(sessionStorage.getItem("dp-highlight-start"));
-    const end = parseInt(sessionStorage.getItem("dp-highlight-end"));
+    const [start, end] = loadHighlightState();
 
     if (!start || !end) return;
 
@@ -132,6 +125,28 @@ function onCellClick({ target }) {
   smartCellHighlight(target, date);
 }
 
+function saveHighlightState({ start, end }) {
+  if (start) sessionStorage.setItem("dp-highlight-start", start);
+  if (end) sessionStorage.setItem("dp-highlight-end", end);
+}
+
+function loadHighlightState() {
+  const start = sessionStorage.getItem("dp-highlight-start");
+  const end = sessionStorage.getItem("dp-highlight-end");
+  return [start, end];
+}
+
+function clearHighlightState() {
+  sessionStorage.removeItem("dp-highlight-start");
+  sessionStorage.removeItem("dp-highlight-end");
+}
+
+function loadDateState() {
+  let year = parseInt(sessionStorage.getItem("dp-visible-year"));
+  let month = parseInt(sessionStorage.getItem("dp-visible-month"));
+  return [year, month];
+}
+
 /**
  * @param {Date} date JS Date object
  * @param {number} days number of days to add
@@ -178,18 +193,16 @@ function createCellRange(page, start, end) {
  */
 function smartCellHighlight(clickedCell, cellDate) {
   // big and hacky, not optimized, but simple
-  // TODO: handle backwards selection between different months
 
   const page = clickedCell.parentNode;
   const classStart = "days-grid__cell--range-start";
   const classEnd = "days-grid__cell--range-end";
 
-  let start = parseInt(sessionStorage.getItem("dp-highlight-start"));
-  let end = parseInt(sessionStorage.getItem("dp-highlight-end"));
+  let [start, end] = loadHighlightState();
 
   if (!start) {
     clickedCell.classList.add(classStart);
-    sessionStorage.setItem("dp-highlight-start", Number(cellDate));
+    saveHighlightState({ start: Number(cellDate) });
     return;
   }
 
@@ -198,10 +211,7 @@ function smartCellHighlight(clickedCell, cellDate) {
 
     if (new Date(start) > new Date(end)) {
       // reverse selection, swap start with end
-      let savedStart = start;
-      start = end;
-      end = savedStart;
-      sessionStorage.setItem("dp-highlight-start", start);
+      [start, end] = [end, start];
 
       const cellStart = page.querySelector(`.${classStart}`);
       if (cellStart) {
@@ -211,7 +221,7 @@ function smartCellHighlight(clickedCell, cellDate) {
       clickedCell.classList.add(classStart);
     } else clickedCell.classList.add(classEnd);
 
-    sessionStorage.setItem("dp-highlight-end", end);
+    saveHighlightState({ start, end });
 
     highlightCellsRange(page, new Date(start), new Date(end));
 
@@ -246,8 +256,7 @@ function clearCellsHighlighting(page) {
   const classEnd = "days-grid__cell--range-end";
   const classHighlight = "days-grid__cell--range";
 
-  sessionStorage.removeItem("dp-highlight-start");
-  sessionStorage.removeItem("dp-highlight-end");
+  clearHighlightState();
 
   let cellStart = page.querySelector(`.${classStart}`);
   if (cellStart) cellStart.classList.remove(classStart);
@@ -266,8 +275,7 @@ function clearCellsHighlighting(page) {
  * @returns {Date} JS Date object
  */
 function getDateFromCell(cell) {
-  let year = parseInt(sessionStorage.getItem("dp-visible-year"));
-  let month = parseInt(sessionStorage.getItem("dp-visible-month"));
+  let [year, month] = loadDateState();
   const date = parseInt(cell.textContent);
 
   if (cell.classList.contains("days-grid__cell--not-this-month"))
@@ -296,8 +304,7 @@ function getDateFromCell(cell) {
  * @returns {Node} Calendar cell with a given date or null if nothing found
  */
 function getCellFromDate(date, page) {
-  const pageYear = parseInt(sessionStorage.getItem("dp-visible-year"));
-  const pageMonth = parseInt(sessionStorage.getItem("dp-visible-month"));
+  const [pageYear, pageMonth] = loadDateState();
   const month = date.getMonth();
   const day = date.getDate();
 
