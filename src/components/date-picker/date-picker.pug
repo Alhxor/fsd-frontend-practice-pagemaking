@@ -6,11 +6,11 @@ mixin date-picker({ id, dataKey })
 
   .date-picker(id=id, data-datakey=dataKey)
     header.date-picker__header
-      .date-picker__previous
-        .arrow-left
+      i.date-picker__previous
+        span.material-icons arrow_back
       span.date-picker__heading Август 2019
-      .date-picker__next
-        .arrow-right
+      i.date-picker__next
+        span.material-icons arrow_forward
 
     .days-grid
       header.days-grid__header

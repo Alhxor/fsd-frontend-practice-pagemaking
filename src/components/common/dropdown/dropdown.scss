@@ -41,15 +41,9 @@
   }
 
   &__icon-expand {
-    display: block;
-    width: 6px;
-    height: 6px;
-    border: 2px solid $dark75;
-    border-top: none;
-    border-right: none;
-    transform: rotate(-45deg);
-    margin-right: 2px;
-    margin-bottom: 4px;
+    color: $dark50;
+    display: flex;
+    align-items: center;
   }
 
   &__content {

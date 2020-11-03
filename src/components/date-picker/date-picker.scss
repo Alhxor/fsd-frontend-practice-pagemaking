@@ -22,11 +22,12 @@
   &__previous,
   &__next {
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: $purple;
   }
 
   &__heading {
@@ -41,45 +42,6 @@
   &__controls {
     width: 100%;
   }
-}
-
-.arrow-left {
-  $w: 18px;
-  $h: 3px;
-  $left: -2px;
-  $top: 3px;
-
-  position: relative;
-
-  height: $h;
-  width: $w;
-
-  background-color: $purple;
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    height: $h;
-    width: 60%;
-    background-color: inherit;
-    left: $left;
-  }
-
-  &::before {
-    top: -$top;
-    transform: rotate(-45deg);
-  }
-
-  &::after {
-    top: $top;
-    transform: rotate(45deg);
-  }
-}
-
-.arrow-right {
-  @extend .arrow-left;
-  transform: rotate(180deg);
 }
 
 .days-grid {
