@@ -27,15 +27,6 @@
     color: $primary;
   }
 
-  &__heading {
-    font-family: Quicksand, sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 19px;
-    line-height: 24px;
-    color: $dark100;
-  }
-
   &__controls {
     width: 100%;
   }
@@ -65,9 +56,6 @@
     justify-content: center;
     align-items: center;
 
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
     font-size: 12px;
     line-height: 15px;
 
