@@ -1,4 +1,4 @@
-mixin checkbox({ id, text })
+mixin checkbox({ id, text, checked })
   .checkbox
-    input.checkbox__input(type="checkbox", id=id)
+    input.checkbox__input(type="checkbox", id=id, checked=checked)
     label.checkbox__label(for=id)= text
