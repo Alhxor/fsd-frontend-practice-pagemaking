@@ -1,4 +1,9 @@
-mixin checkbox({ id, name, text, checked })
+mixin checkbox({ id, name, text, checked, toggle })
   .checkbox
-    input.checkbox__input(type="checkbox", id=id, name=name, checked=checked)
+    input.checkbox__input(
+      type="checkbox", 
+      id=id, name=name, 
+      checked=checked,
+      class=toggle ? "checkbox__input--toggle" : ""
+    )
     label.checkbox__label(for=id)= text
