@@ -1,10 +1,14 @@
 .checkbox {
-  &__input {
+  // &__input {
     // appearance: none;
-  }
+  // }
+  // outline: 1px solid red;
+  padding: 5px 0;
 
   &__label {
     color: $dark50;
     line-height: 18px;
+    padding-left: 10px;
+    // outline: 1px solid blue;
   }
 }
