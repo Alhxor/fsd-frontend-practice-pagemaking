@@ -5,6 +5,7 @@ include /components/date-picker/date-picker.pug
 include /components/date-dropdown/date-dropdown.pug
 include /components/filter-date-dropdown/filter-date-dropdown.pug
 include /components/checkbox/checkbox.pug
+include /components/radio/radio.pug
 
 p
   +input({ type: "email", id: "email", placeholder: "Email", title: "Text field" })
@@ -68,10 +69,12 @@ p
 
 
 p
-  h3 checkbox buttons
+  h3(style="padding: 10px 0") checkbox buttons
   +checkbox({ id: "checkbox-0", text: "Можно курить", checked: false })
   +checkbox({ id: "checkbox-1", text: "Можно с питомцами", checked: true })
   +checkbox({ id: "checkbox-2", text: "Можно пригласить гостей (до 10 человек)", checked: true })
 
 p
-  h3 radio buttons
+  h3(style="padding: 10px 0") radio buttons
+  +radio({ id: "radio-0", name: "sex", value: "male", text: "Мужчина", checked: true })
+  +radio({ id: "radio-1", name: "sex", value: "female", text: "Женщина" })

@@ -3,12 +3,13 @@
  * https://codepen.io/aaroniker/pen/ZEYoxEY?editors=0110
  */
 @supports (appearance: none) {
-  input[type="checkbox"] {
+  input[type="checkbox"],
+  input[type="radio"]
+  {
     appearance: none;
+    cursor: pointer;
     position: relative;
     border: 1px solid $dark25;
-    border-radius: 4px;
-    box-sizing: border-box;
     width: 20px;
     height: 20px;
     vertical-align: middle;
@@ -17,6 +18,18 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
+
+    & + label {
+      cursor: pointer;
+      color: $dark50;
+      line-height: 18px;
+      padding-left: 10px;
+    }
+  }
+
+  input[type="checkbox"] {
+    border-radius: 4px;
+    box-sizing: border-box;
 
     &:checked {
       border-color: $primary;
@@ -39,8 +52,24 @@
   }
 
   input[type="radio"] {
-    &:checked {
+    border-radius: 50%;
 
+    &:checked {
+      border-color: $primary;
+
+      &::after {
+        content: "";
+        display: table;
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background-image: linear-gradient(180deg, $primary, $primary-gradient);
+        border-radius: inherit;
+      }
+    }
+
+    &:checked + label {
+      color: $dark75;
     }
   }
 }
