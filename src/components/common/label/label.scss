@@ -1,0 +1,9 @@
+.label {
+  display: block;
+  margin-bottom: 5px;
+
+  &__text {
+    color: $dark100;
+    font-weight: bold;
+  }
+}

@@ -1,8 +1,8 @@
+include /components/common/label/label.pug
+
 mixin dropdown({ id, title, description, dataKey, contentId, text })
   .input
-    label.input__label(for=id)
-      span.input__title= title
-      span.input__description= description
+    +label({ forId: id, text: title })
 
     button.dropdown(id=id, data-datakey=dataKey, data-contentid=contentId)
       span.dropdown__text= text

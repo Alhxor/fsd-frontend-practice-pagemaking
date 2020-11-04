@@ -1,3 +1,5 @@
+@import "@/components/common/label/label.scss";
+
 .masked-input {
   position: relative;
 }
@@ -8,8 +10,4 @@
   left: 16px;
   display: block;
   color: $dark25;
-}
-
-.input__field--masked {
-  font-family: Montserrat;
 }

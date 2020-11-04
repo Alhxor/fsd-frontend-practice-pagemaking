@@ -1,12 +1,12 @@
+include /components/common/label/label.pug
+
 mixin masked-input({ id, title, description, type, placeholder })
   -
     var maskedId = id + "-placeholder"
   .input
-    label.input__label(for=id)
-      span.input__title= title
-      span.input__description= description
+    +label({ forId: id, text: title })
     .masked-input
-      input.input__field.input__field--masked(
+      input.input__field(
         type=type,
         id=id,
         class="js-masked-input"

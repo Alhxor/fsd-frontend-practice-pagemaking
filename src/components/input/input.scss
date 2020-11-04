@@ -1,32 +1,12 @@
-@import "@styles/colors.scss";
+@import "@/components/common/label/label.scss";
 
 .input {
   max-width: 320px;
 
-  &__label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-transform: uppercase;
-    font-family: Montserrat;
-    font-style: normal;
-    font-size: 12px;
-    line-height: 15px;
-    margin-bottom: 5px;
-  }
-  
-  &__title {
-    color: $dark100;
-    font-weight: bold;
-  }
-
-  &__description {
-    color: $dark50;
-  }
-
   &__field {
     width: 320px;
     height: 44px;
+    font-family: Montserrat;
     line-height: 18px;
     font-size: 14px;
     background: #ffffff;
@@ -40,8 +20,6 @@
     }
 
     &::placeholder {
-      font-family: Montserrat;
-      font-size: 14px;
       color: $dark25;
     }
 

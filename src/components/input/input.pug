@@ -1,6 +1,6 @@
-mixin input({ id, title, description, type, placeholder })
+include /components/common/label/label.pug
+
+mixin input({ id, title, type, placeholder })
   .input
-    label.input__label(for=id)
-      span.input__title= title
-      span.input__description= description
+    +label({ forId: id, text: title })
     input.input__field(type=type, placeholder=placeholder, id=id)
