@@ -1,0 +1,10 @@
+.checkbox {
+  &__input {
+    // appearance: none;
+  }
+
+  &__label {
+    color: $dark50;
+    line-height: 18px;
+  }
+}
