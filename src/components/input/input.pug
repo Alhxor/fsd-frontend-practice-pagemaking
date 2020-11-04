@@ -1,6 +1,14 @@
 include /components/common/label/label.pug
 
-mixin input({ id, title, type, placeholder })
+mixin input({ id, title, type, placeholder, submit })
   .input
     +label({ forId: id, text: title })
-    input.input__field(type=type, placeholder=placeholder, id=id)
+    input.input__field(
+      type=type,
+      placeholder=placeholder,
+      id=id,
+      class=submit ? "input__field--with-submit" : ""
+    )
+    if submit
+      button.input__submit
+        i.material-icons arrow_forward
