@@ -1,6 +1,7 @@
 .date-dropdown {
   display: flex;
   justify-content: space-between;
+  max-width: 320px;
 
   &__half {
     max-width: 150px;
