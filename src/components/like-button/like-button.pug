@@ -1,0 +1,7 @@
+mixin like-button({ id, text, clicked })
+  button.like-button(id=id, class=clicked ? "like-button--clicked": "")
+    .like-button__content
+      i.like-button__icon
+        span.material-icons= clicked ? "favorite" : "favorite_border"
+
+      span.like-button__counter= text
