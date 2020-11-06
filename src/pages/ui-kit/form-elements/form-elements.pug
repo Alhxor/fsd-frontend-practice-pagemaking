@@ -10,91 +10,93 @@ include /components/like-button/like-button.pug
 include /components/rate-button/rate-button.pug
 
 p
-  +input({ type: "email", id: "email", placeholder: "Email", title: "Text field" })
++input({ type: "email", id: "email", placeholder: "Email", title: "Text field" })
 
 p
-  +options-dropdown({
-    title: "Dropdown",
-    id: "dropdown-0",
-    dataKey: "dropdown-0",
-    text: "Сколько гостей",
-    plural: "гость,гостя,гостей",
-    useControls: true,
-    options: [
-      {name: "взрослые", value: 0}, 
-      {name: "дети", value: 0}, 
-      {name: "младенцы", value: 0}
-    ]
-  })
++options-dropdown({
+  title: "Dropdown",
+  id: "dropdown-0",
+  dataKey: "dropdown-0",
+  text: "Сколько гостей",
+  plural: "гость,гостя,гостей",
+  useControls: true,
+  options: [
+    {name: "взрослые", value: 0}, 
+    {name: "дети", value: 0}, 
+    {name: "младенцы", value: 0}
+  ]
+})
 
 p
-  +options-dropdown({
-    title: "Dropdown (detailed)", 
-    id: "dropdown-2", 
-    dataKey: "dropdown-2",
-    text: "Выбор комнат",
-    plural: "опций,опции,опций",
-    detailed: true,
-    useControls: false,
++options-dropdown({
+  title: "Dropdown (detailed)", 
+  id: "dropdown-2", 
+  dataKey: "dropdown-2",
+  text: "Выбор комнат",
+  plural: "опций,опции,опций",
+  detailed: true,
+  useControls: false,
 
-    options: [
-      {name: "спальни", value: 0, plural: "спальня,спальни,спален"}, 
-      {name: "кровати", value: 0, plural: "кровать,кровати,кроватей"}, 
-      {name: "ванные комнаты", value: 0, plural: "ванная комната,ванные комнаты,ванных комнат"}
-    ]
-  })
-
-p
-  +date-dropdown({
-    title: {
-      left: "Date left",
-      right: "Date right"
-    },
-    id: "date-dropdown-0",
-    dataKey: "date-dropdown-0",
-    text: "ДД.ММ.ГГГГ"
-  })
+  options: [
+    {name: "спальни", value: 0, plural: "спальня,спальни,спален"}, 
+    {name: "кровати", value: 0, plural: "кровать,кровати,кроватей"}, 
+    {name: "ванные комнаты", value: 0, plural: "ванная комната,ванные комнаты,ванных комнат"}
+  ]
+})
 
 p
-  +filter-date-dropdown({
-    title: "Filter date dropdown",
-    id: "filter-date-dropdown-0",
-    dataKey: "filter-date-dropdown-0",
-    text: "Выберите даты"
-  })
++date-dropdown({
+  title: {
+    left: "Date left",
+    right: "Date right"
+  },
+  id: "date-dropdown-0",
+  dataKey: "date-dropdown-0",
+  text: "ДД.ММ.ГГГГ"
+})
 
 p
-  +masked-input({ type: "text", id: "masked", placeholder: "ДД.ММ.ГГГГ", title: "Masked text field" })
++filter-date-dropdown({
+  title: "Filter date dropdown",
+  id: "filter-date-dropdown-0",
+  dataKey: "filter-date-dropdown-0",
+  text: "Выберите даты"
+})
 
 p
-  +input({ type: "email", id: "sub-email", placeholder: "Email", title: "Subscription text field", submit: true })
++masked-input({ type: "text", id: "masked", placeholder: "ДД.ММ.ГГГГ", title: "Masked text field" })
+
+p
++input({ type: "email", id: "sub-email", placeholder: "Email", title: "Subscription text field", submit: true })
 
 
 p
-  h3(style="padding: 10px 0") checkbox buttons
-  +checkbox({ id: "checkbox-0", text: "Можно курить", checked: false })
-  +checkbox({ id: "checkbox-1", text: "Можно с питомцами", checked: true })
-  +checkbox({ id: "checkbox-2", text: "Можно пригласить гостей (до 10 человек)", checked: true })
+h3(style="padding: 10px 0") checkbox buttons
++checkbox({ id: "checkbox-0", text: "Можно курить", checked: false })
++checkbox({ id: "checkbox-1", text: "Можно с питомцами", checked: true })
++checkbox({ id: "checkbox-2", text: "Можно пригласить гостей (до 10 человек)", checked: true })
 
 p
-  h3(style="padding: 10px 0") radio buttons
-  +radio({ id: "radio-0", name: "sex", value: "male", text: "Мужчина", checked: true })
-  +radio({ id: "radio-1", name: "sex", value: "female", text: "Женщина" })
+h3(style="padding: 10px 0") radio buttons
++radio({ id: "radio-0", name: "sex", value: "male", text: "Мужчина", checked: true })
++radio({ id: "radio-1", name: "sex", value: "female", text: "Женщина" })
 
 p
-  h3(style="padding: 10px 0") toggle
-  +checkbox({ id: "checkbox-3", text: "Получать спецпредложения", checked: true, toggle: true })
-  +checkbox({ id: "checkbox-4", text: "Получать спецпредложения", checked: false, toggle: true })
+h3(style="padding: 10px 0") toggle
++checkbox({ id: "checkbox-3", text: "Получать спецпредложения", checked: true, toggle: true })
++checkbox({ id: "checkbox-4", text: "Получать спецпредложения", checked: false, toggle: true })
 
  
 p
-  h3(style="padding: 10px 0") like button
-  div(style="display: flex; justify-content: space-between; width: 90px")
-    +like-button({ id: "like-0", text: 2 })
-    +like-button({ id: "like-1", text: 12, clicked: true })
+h3(style="padding: 10px 0") like button
+div(style="display: flex; justify-content: space-between; width: 90px")
+  +like-button({ id: "like-0", text: 2 })
+  +like-button({ id: "like-1", text: 12, clicked: true })
 
 p
-  h3(style="padding: 10px 0") rate button
-  div(style="display: flex; justify-content: space-between; width: 260px")
-    +rate-button({ id: "rate-0", stars: 4 })
-    +rate-button({ id: "rate-1", stars: 5 })
+h3(style="padding: 10px 0") rate button
+div(style="display: flex; justify-content: space-between; width: 260px")
+  +rate-button({ id: "rate-0", stars: 4 })
+  +rate-button({ id: "rate-1", stars: 5 })
+
+p
