@@ -1,7 +1,8 @@
 mixin like-button({ id, text, clicked })
+  - var short = String(text).length === 1
   button.like-button(id=id, class=clicked ? "like-button--clicked": "")
     .like-button__content
       i.like-button__icon
         span.material-icons= clicked ? "favorite" : "favorite_border"
 
-      span.like-button__counter= text
+      span.like-button__counter= short ? String.fromCharCode(160) + text : text
