@@ -1,0 +1,7 @@
+include ./star/star.pug
+
+mixin rate-button({ id, stars })
+  - var n = 1
+  .rate-button(id=id)
+    while n <= 5
+      +star(n++ <= stars)

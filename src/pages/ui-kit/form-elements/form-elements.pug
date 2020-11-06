@@ -7,6 +7,7 @@ include /components/filter-date-dropdown/filter-date-dropdown.pug
 include /components/checkbox/checkbox.pug
 include /components/radio/radio.pug
 include /components/like-button/like-button.pug
+include /components/rate-button/rate-button.pug
 
 p
   +input({ type: "email", id: "email", placeholder: "Email", title: "Text field" })
@@ -91,3 +92,9 @@ p
   div(style="display: flex; justify-content: space-between; width: 90px")
     +like-button({ id: "like-0", text: 2 })
     +like-button({ id: "like-1", text: 12, clicked: true })
+
+p
+  h3(style="padding: 10px 0") rate button
+  div(style="display: flex; justify-content: space-between; width: 260px")
+    +rate-button({ id: "rate-0", stars: 4 })
+    +rate-button({ id: "rate-1", stars: 5 })
