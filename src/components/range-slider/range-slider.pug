@@ -1,0 +1,9 @@
+mixin range-slider({ id, title, min, max, start, end, units })
+  .range-slider(id=id, data-min=min, data-max=max, data-units=units)
+    .range-slider__header
+      h3= title
+      .range-slider__text= `${start}${units} - ${end}${units}`
+    .range-slider__slider
+      .range-slider__selection
+        .range-slider__start
+        .range-slider__end

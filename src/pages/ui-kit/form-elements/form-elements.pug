@@ -8,6 +8,7 @@ include /components/checkbox/checkbox.pug
 include /components/radio/radio.pug
 include /components/like-button/like-button.pug
 include /components/rate-button/rate-button.pug
+include /components/range-slider/range-slider.pug
 
 p
 +input({ type: "email", id: "email", placeholder: "Email", title: "Text field" })
@@ -100,3 +101,4 @@ div(style="display: flex; justify-content: space-between; width: 260px")
   +rate-button({ id: "rate-1", stars: 5 })
 
 p
++range-slider({ id: "range-0", title: "range slider", min: 0, max: 20000, start: 5000, end: 10000, units: "₽" })

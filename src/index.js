@@ -6,3 +6,4 @@ import "@/components/date-dropdown/date-dropdown";
 import "@/components/filter-date-dropdown/filter-date-dropdown";
 import "@/components/like-button/like-button";
 import "@/components/rate-button/rate-button";
+import "@/components/range-slider/range-slider";
