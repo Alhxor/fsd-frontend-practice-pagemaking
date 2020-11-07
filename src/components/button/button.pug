@@ -1,0 +1,6 @@
+mixin button({ id, type, text, active })
+  -
+    var mods = "button--" + type + ((active) ? "" : " button--disabled")
+  button.button(id=id, class=mods)
+    .button__content= text
+    

@@ -9,6 +9,7 @@ include /components/radio/radio.pug
 include /components/like-button/like-button.pug
 include /components/rate-button/rate-button.pug
 include /components/range-slider/range-slider.pug
+include /components/button/button.pug
 
 p
 +input({ type: "email", id: "email", placeholder: "Email", title: "Text field" })
@@ -102,3 +103,20 @@ div(style="display: flex; justify-content: space-between; width: 260px")
 
 p
 +range-slider({ id: "range-0", title: "range slider", min: 0, max: 20000, start: 5000, end: 10000, units: "₽" })
+
+p
+h3(style="padding: 10px 0") buttons
+div(style="display: flex; justify-content: space-between; width: 220px")
+  +button({ id: "btn-0", type: "full", text: "click me", active: true })
+  +button({ id: "btn-0", type: "full", text: "click me", active: false })
+
+p 
+div(style="display: flex; justify-content: space-between; width: 220px")
+  +button({ id: "btn-1", type: "border", text: "click me", active: true })
+  +button({ id: "btn-1", type: "border", text: "click me", active: false })
+
+p
+div(style="display: flex; justify-content: space-between; width: 140px")
+  +button({ id: "btn-2", type: "link", text: "click me", active: true })
+  +button({ id: "btn-2", type: "link", text: "click me", active: false })
+
