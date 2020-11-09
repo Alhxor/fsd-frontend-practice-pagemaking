@@ -1,5 +1,4 @@
 .button {
-  cursor: pointer;
   position: relative;
 
   appearance: none;
@@ -37,6 +36,7 @@
   }
 
   &--disabled {
+    cursor: not-allowed;
     &::after {
       opacity: 0.5;
     }
@@ -70,5 +70,22 @@
   &--link {
     width: auto;
     height: auto;
+  }
+
+  &--submit {
+    width: 320px;
+    
+    & .material-icons {
+      position: absolute;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      top: 0;
+      right: 0;
+      width: 44px;
+      height: 44px;
+    }
   }
 }

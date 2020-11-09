@@ -1,6 +1,10 @@
-mixin button({ id, type, text, active })
+mixin button({ id, type, text, disabled, submit })
   -
-    var mods = "button--" + type + ((active) ? "" : " button--disabled")
+    var modActive = ((disabled) ? " button--disabled" : "")
+    var modSubmit = ((submit) ? " button--submit" : "")
+    var mods = "button--" + type + modActive + modSubmit
   button.button(id=id, class=mods)
     .button__content= text
+    if submit
+      i.material-icons arrow_forward
     

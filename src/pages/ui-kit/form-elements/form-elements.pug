@@ -107,16 +107,18 @@ p
 p
 h3(style="padding: 10px 0") buttons
 div(style="display: flex; justify-content: space-between; width: 220px")
-  +button({ id: "btn-0", type: "full", text: "click me", active: true })
-  +button({ id: "btn-0", type: "full", text: "click me", active: false })
+  +button({ id: "btn-0", type: "full", text: "click me" })
+  +button({ id: "btn-0-d", type: "full", text: "click me", disabled: true })
 
 p 
 div(style="display: flex; justify-content: space-between; width: 220px")
-  +button({ id: "btn-1", type: "border", text: "click me", active: true })
-  +button({ id: "btn-1", type: "border", text: "click me", active: false })
+  +button({ id: "btn-1", type: "border", text: "click me" })
+  +button({ id: "btn-1-d", type: "border", text: "click me", disabled: true })
 
 p
 div(style="display: flex; justify-content: space-between; width: 140px")
-  +button({ id: "btn-2", type: "link", text: "click me", active: true })
-  +button({ id: "btn-2", type: "link", text: "click me", active: false })
+  +button({ id: "btn-2", type: "link", text: "click me" })
+  +button({ id: "btn-2-d", type: "link", text: "click me", disabled: true })
 
+p
++button({ id: "btn-3", type: "full", text: "перейти к оплате", submit: true })

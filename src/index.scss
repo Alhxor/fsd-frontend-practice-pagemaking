@@ -59,6 +59,10 @@ button, input {
   line-height: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 .hidden {
   display: none;
 }
