@@ -10,6 +10,8 @@ include /components/like-button/like-button.pug
 include /components/rate-button/rate-button.pug
 include /components/range-slider/range-slider.pug
 include /components/button/button.pug
+include /components/pagination/pagination.pug
+
 
 p
 +input({ type: "email", id: "email", placeholder: "Email", title: "Text field" })
@@ -122,3 +124,7 @@ div(style="display: flex; justify-content: space-between; width: 140px")
 
 p
 +button({ id: "btn-3", type: "full", text: "перейти к оплате", submit: true })
+
+p
+h3(style="padding: 10px 0") pagination
++pagination({ id: "pagination-0", text: "1 – 12 из 100+ вариантов аренды", total: 15, current: 1 })

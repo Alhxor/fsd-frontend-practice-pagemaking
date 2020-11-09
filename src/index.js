@@ -7,3 +7,4 @@ import "@/components/filter-date-dropdown/filter-date-dropdown";
 import "@/components/like-button/like-button";
 import "@/components/rate-button/rate-button";
 import "@/components/range-slider/range-slider";
+import "@/components/pagination/pagination";
