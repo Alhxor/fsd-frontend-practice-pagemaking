@@ -1,12 +1,12 @@
 mixin pagination({ id, text, total, current })
-  .pagination
+  .pagination(data-total=total)
     .pagination__links
       .pagination__link.pagination__link--current 1
       .pagination__link 2
       .pagination__link 3
-      .pagination__link.pagination__link--disabled ...
+      .pagination__link.pagination__link--inactive ...
       .pagination__link 15
-      .pagination__link.pagination__link--to-last
+      .pagination__link.pagination__link--forward
         i.material-icons arrow_forward
 
     .pagination__text= text

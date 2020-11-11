@@ -1,5 +1,5 @@
 .pagination {
-  width: 240px;
+  width: 300px;
 
   &__links {
     display: flex;
@@ -16,7 +16,11 @@
     font-size: 12px;
     line-height: 15px;
 
-    &--current, &--to-last {
+    &--inactive {
+      cursor: auto;
+    }
+
+    &--current, &--forward {
       color: #fff;
       border-radius: 50%;
     }
@@ -26,7 +30,7 @@
       background-image: linear-gradient(180deg, $primary, $primary-gradient);
     }
 
-    &--to-last {
+    &--forward {
       background-image: linear-gradient(180deg, $secondary, $secondary-gradient);
     }
 
