@@ -1,0 +1,26 @@
+.bullet-list {
+  max-width: 292px;
+
+  &__item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-bottom: 10px;
+
+    &::before {
+      content: '';
+      display: table;
+      position: absolute;
+
+      top: 7px;
+      left: 0;
+
+      width: 10px;
+      height: 10px;
+      
+      border-radius: 50%;
+      background: $dark25;
+    }
+  }
+}
