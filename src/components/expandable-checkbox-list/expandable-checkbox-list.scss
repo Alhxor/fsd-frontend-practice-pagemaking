@@ -1,0 +1,40 @@
+.expandable-checkbox-list {
+  &__title {
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 266px;
+
+    & .material-icons {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      color: $dark50;
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  &--expanded {
+    & .material-icons {
+      transform: rotate(180deg);
+    }
+  }
+
+  &--expanded &__list {
+    display: block;
+  }
+
+  &__list {
+    display: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    display: block;
+  }
+}

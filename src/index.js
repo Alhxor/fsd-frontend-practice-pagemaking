@@ -8,3 +8,4 @@ import "@/components/like-button/like-button";
 import "@/components/rate-button/rate-button";
 import "@/components/range-slider/range-slider";
 import "@/components/pagination/pagination";
+import "@/components/expandable-checkbox-list/expandable-checkbox-list";

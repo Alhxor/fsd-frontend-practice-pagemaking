@@ -1,0 +1,21 @@
+include /components/common/label/label.pug
+include /components/checkbox/checkbox.pug
+
+mixin expandable-checkbox-list({ id, title, expanded, list })
+  .expandable-checkbox-list(
+    id=id,
+    class=expanded ? "expandable-checkbox-list--expanded" : ""
+  )
+    .expandable-checkbox-list__title
+      +label({ forId: id, text: title })
+      i.material-icons expand_more
+    ul.expandable-checkbox-list__list
+      each cb, ind in list
+        li.expandable-checkbox-list__item
+          - var cbId = id + "-cb-" + ind
+          +checkbox({
+            id: cbId,
+            name: cbId + "-name",
+            text: cb.text,
+            checked: cb.checked
+          })

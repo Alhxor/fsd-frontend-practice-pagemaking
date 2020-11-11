@@ -11,6 +11,7 @@ include /components/rate-button/rate-button.pug
 include /components/range-slider/range-slider.pug
 include /components/button/button.pug
 include /components/pagination/pagination.pug
+include /components/expandable-checkbox-list/expandable-checkbox-list.pug
 
 
 p
@@ -128,3 +129,18 @@ p
 p
 h3(style="padding: 10px 0") pagination
 +pagination({ id: "pagination-0", text: "1 – 12 из 100+ вариантов аренды", total: 15, current: 1 })
+
+p
++expandable-checkbox-list({
+  id: "expandable-cb-0",
+  title: "expandable checkbox list",
+  expanded: false,
+  list: [
+    { text: "завтрак", checked: false },
+    { text: "письменный стол", checked: true },
+    { text: "стул для кормления", checked: true },
+    { text: "кроватка", checked: true },
+    { text: "телевизор", checked: false },
+    { text: "шампунь", checked: false },
+  ]
+})
