@@ -1,0 +1,29 @@
+.comment {
+  &__author, &__body {
+    display: flex;
+  }
+
+  &__author {
+    padding-bottom: 10px;
+  }
+
+  &__userpic {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+  }
+
+  &__username {
+    font-weight: bold;
+  }
+
+  &__info, &__text {
+    padding-left: 10px;
+  }
+
+  &__like {
+    flex-shrink: 0;
+    text-align: center;
+    width: 48px;
+  }
+}

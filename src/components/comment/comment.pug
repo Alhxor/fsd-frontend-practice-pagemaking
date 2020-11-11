@@ -1,0 +1,14 @@
+include /components/like-button/like-button.pug
+
+mixin comment({ userpic, name, time, like, text })
+  .comment
+    .comment__author
+      img.comment__userpic(src=userpic)
+      .comment__info
+        .comment__username= name
+        .comment__time= time
+    .comment__body
+      .comment__like
+        +like-button(like)
+      .comment__text= text
+      

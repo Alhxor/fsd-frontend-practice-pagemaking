@@ -15,6 +15,7 @@ include /components/expandable-checkbox-list/expandable-checkbox-list.pug
 include /components/rich-checkbox/rich-checkbox.pug
 include /components/bullet-list/bullet-list.pug
 include /components/graphic-list/graphic-list.pug
+include /components/comment/comment.pug
 
 
 p
@@ -170,4 +171,13 @@ p
     { icon: "insert_emoticon", title: "Комфорт", description: "Шумопоглощающие стены" },
     { icon: "location_city", title: "Удобство", description: "Окно в каждой из спален", noline: true },
   ]
+})
+
+p
++comment({
+  userpic: "src/assets/samples/userpic-0.png",
+  name: "Мурад Сарафанов",
+  time: "5 дней назад",
+  like: { id: "comment-like-0", text: 12, clicked: true },
+  text: "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.",
 })
