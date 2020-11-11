@@ -12,6 +12,7 @@ include /components/range-slider/range-slider.pug
 include /components/button/button.pug
 include /components/pagination/pagination.pug
 include /components/expandable-checkbox-list/expandable-checkbox-list.pug
+include /components/rich-checkbox/rich-checkbox.pug
 
 
 p
@@ -136,11 +137,16 @@ p
   title: "expandable checkbox list",
   expanded: false,
   list: [
-    { text: "завтрак", checked: false },
-    { text: "письменный стол", checked: true },
-    { text: "стул для кормления", checked: true },
-    { text: "кроватка", checked: true },
-    { text: "телевизор", checked: false },
-    { text: "шампунь", checked: false },
+    { text: "Завтрак", checked: false },
+    { text: "Письменный стол", checked: true },
+    { text: "Стул для кормления", checked: true },
+    { text: "Кроватка", checked: true },
+    { text: "Телевизор", checked: false },
+    { text: "Шампунь", checked: false },
   ]
 })
+
+p
+h3(style="padding: 10px 0") rich checkbox buttons
++rich-checkbox({ id: "rich-checkbox-0", text: "Широкий коридор", description: "Ширина коридоров в номере не менее 91 см." })
++rich-checkbox({ id: "rich-checkbox-1", text: "Помощник для инвалидов", description: "На 1 этаже вас встретит специалист  и проводит до номера." })

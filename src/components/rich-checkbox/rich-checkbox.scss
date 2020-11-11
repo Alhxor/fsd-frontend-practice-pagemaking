@@ -1,0 +1,15 @@
+.rich-checkbox {
+  max-width: 266px;
+
+  &__checkbox input[type="checkbox"] + label {
+    color: $dark75;
+    font-weight: bold;
+  }
+
+  &__description {
+    padding-left: 30px;
+    color: $dark50;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}

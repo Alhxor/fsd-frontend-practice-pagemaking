@@ -1,0 +1,7 @@
+include /components/checkbox/checkbox.pug
+
+mixin rich-checkbox({ id, name, text, checked, description })
+  .rich-checkbox
+    .rich-checkbox__checkbox
+      +checkbox({ id: id + '-cb', name, text, checked })
+    .rich-checkbox__description= description
