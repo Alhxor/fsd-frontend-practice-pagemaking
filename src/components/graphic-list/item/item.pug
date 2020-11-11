@@ -1,0 +1,6 @@
+mixin item({ icon, title, description, noline })
+  .graphic-list__item(class=noline ? "graphic-list__item--no-line" : "")
+    .graphic-list__icon.material-icons= icon
+    .graphic-list__text
+      .graphic-list__title= title
+      .graphic-list__description= description

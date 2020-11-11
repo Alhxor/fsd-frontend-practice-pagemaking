@@ -1,0 +1,7 @@
+include ./item/item.pug
+
+mixin graphic-list({ list })
+  ul.graphic-list
+    each itemProps in list
+      li
+        +item(itemProps)

@@ -14,6 +14,7 @@ include /components/pagination/pagination.pug
 include /components/expandable-checkbox-list/expandable-checkbox-list.pug
 include /components/rich-checkbox/rich-checkbox.pug
 include /components/bullet-list/bullet-list.pug
+include /components/graphic-list/graphic-list.pug
 
 
 p
@@ -153,11 +154,20 @@ h3(style="padding: 10px 0") rich checkbox buttons
 +rich-checkbox({ id: "rich-checkbox-1", text: "Помощник для инвалидов", description: "На 1 этаже вас встретит специалист  и проводит до номера." })
 
 p
+h3(style="padding: 10px 0") bullet list
 +bullet-list({
   title: "bullet list",
   list: [
     "Нельзя с питомцами",
     "Без вечеринок и мероприятий",
     "Время прибытия — после 13:00, а выезд до 12:00",
+  ]
+})
+
+p
++graphic-list({
+  list: [
+    { icon: "insert_emoticon", title: "Комфорт", description: "Шумопоглощающие стены" },
+    { icon: "location_city", title: "Удобство", description: "Окно в каждой из спален", noline: true },
   ]
 })
