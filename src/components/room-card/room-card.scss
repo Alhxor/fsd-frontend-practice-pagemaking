@@ -1,0 +1,9 @@
+.room-card {
+  position: relative;
+  z-index: 100;
+  max-width: 380px;
+
+  @media screen and (max-width: 350px) {
+    max-width: 320px;
+  }
+}
