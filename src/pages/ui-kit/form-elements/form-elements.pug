@@ -81,8 +81,10 @@ p
 
 p
 h3(style="padding: 10px 0") checkbox buttons
-+checkbox({ id: "checkbox-0", text: "Можно курить", checked: false })
-+checkbox({ id: "checkbox-1", text: "Можно с питомцами", checked: true })
+div(style="padding-bottom: 10px")
+  +checkbox({ id: "checkbox-0", text: "Можно курить", checked: false })
+div(style="padding-bottom: 10px")
+  +checkbox({ id: "checkbox-1", text: "Можно с питомцами", checked: true })
 +checkbox({ id: "checkbox-2", text: "Можно пригласить гостей (до 10 человек)", checked: true })
 
 p
@@ -92,7 +94,8 @@ h3(style="padding: 10px 0") radio buttons
 
 p
 h3(style="padding: 10px 0") toggle
-+checkbox({ id: "checkbox-3", text: "Получать спецпредложения", checked: true, toggle: true })
+div(style="padding-bottom: 10px")
+  +checkbox({ id: "checkbox-3", text: "Получать спецпредложения", checked: true, toggle: true })
 +checkbox({ id: "checkbox-4", text: "Получать спецпредложения", checked: false, toggle: true })
 
  
@@ -138,7 +141,7 @@ p
 +expandable-checkbox-list({
   id: "expandable-cb-0",
   title: "expandable checkbox list",
-  expanded: false,
+  expanded: true,
   list: [
     { text: "Завтрак", checked: false },
     { text: "Письменный стол", checked: true },
@@ -151,7 +154,8 @@ p
 
 p
 h3(style="padding: 10px 0") rich checkbox buttons
-+rich-checkbox({ id: "rich-checkbox-0", text: "Широкий коридор", description: "Ширина коридоров в номере не менее 91 см." })
+div(style="padding-bottom: 10px")
+  +rich-checkbox({ id: "rich-checkbox-0", text: "Широкий коридор", description: "Ширина коридоров в номере не менее 91 см." })
 +rich-checkbox({ id: "rich-checkbox-1", text: "Помощник для инвалидов", description: "На 1 этаже вас встретит специалист  и проводит до номера." })
 
 p

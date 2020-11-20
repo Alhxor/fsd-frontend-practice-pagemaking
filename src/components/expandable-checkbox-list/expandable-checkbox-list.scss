@@ -36,5 +36,9 @@
 
   &__item {
     display: block;
+
+    &:not(:last-child) {
+      padding-bottom: 10px;
+    }
   }
 }
