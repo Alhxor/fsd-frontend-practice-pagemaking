@@ -2,7 +2,8 @@ include /components/common/label/label.pug
 
 mixin input({ id, title, type, placeholder, submit })
   .input
-    +label({ forId: id, text: title })
+    if title
+      +label({ forId: id, text: title })
     input.input__field(
       type=type,
       placeholder=placeholder,

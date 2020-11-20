@@ -1,0 +1,40 @@
+include /components/common/card/card.pug
+include /components/input/input.pug
+include /components/masked-input/masked-input.pug
+include /components/radio/radio.pug
+include /components/checkbox/checkbox.pug
+include /components/button/button.pug
+
+mixin signup-card()
+  -
+    var pb5 = { "padding-bottom": "5px" }
+    var pb10 = { "padding-bottom": "10px" }
+    var pb20 = { "padding-bottom": "20px" }
+    var pb30 = { "padding-bottom": "30px" }
+  .signup-card
+    +card({})
+      div(style=pb20)
+        h1 Регистрация аккаунта
+      div(style=pb20)
+        div(style=pb10)
+          +input({ id: "signup-name", type: "text", placeholder: "Имя" })
+        div(style=pb10)
+          +input({ id: "signup-surname", type: "text", placeholder: "Фамилия" })
+        div
+          +radio({ id: "signup-sex-m", name: "signup-sex", value: "male", text: "Мужчина", checked: true })
+          +radio({ id: "signup-sex-f", name: "signup-sex", value: "female", text: "Женщина" })
+      div(style=pb20)
+        +masked-input({ id: "signup-birthday-date", title: "Дата рождения", type: "text", placeholder: "ДД.ММ.ГГГГ" })
+      div(style=pb20)
+        h3(style=pb5) Данные для входа в сервис
+        div(style=pb10)
+          +input({ id: "signup-email", type: "email", placeholder: "Email" })
+        div(style=pb10)
+          +input({ id: "signup-password", type: "password", placeholder: "Пароль" })
+        div
+          +checkbox({ id: "signup-subscribe", text: "Получать спецпредложения", checked: false, toggle: true })
+      div(style=pb30)
+        +button({ id: "signup-submit", type: "full", text: "перейти к оплате", submit: true })
+      div(style="display: flex; justify-content: space-between")
+        span.signup-card__toxin Уже есть аккаунт на Toxin
+        +button({ id: "signup-btn-login", type: "border", text: "войти" })
