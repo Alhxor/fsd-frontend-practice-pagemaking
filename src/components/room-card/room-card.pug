@@ -6,9 +6,9 @@ include /components/button/button.pug
 mixin room-card
   .room-card
     +card({})
-      div(style={"padding-bottom": "21px"})
+      .card__section
         h1 Найдём номера под ваши пожелания
-      div(style={"padding-bottom": "21px"})
+      .card__section
         +date-dropdown({
           title: {
             left: "Прибытие",
@@ -18,7 +18,7 @@ mixin room-card
           dataKey: "date-dropdown-10",
           text: "ДД.ММ.ГГГГ"
         })
-      div(style={"padding-bottom": "31px"})
+      .card__section(style={"padding-bottom": "30px"})
         +options-dropdown({
           title: "Гости",
           id: "dropdown-10",

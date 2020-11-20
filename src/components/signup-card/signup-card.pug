@@ -13,27 +13,21 @@ mixin signup-card()
     var pb30 = { "padding-bottom": "30px" }
   .signup-card
     +card({})
-      div(style=pb20)
+      .card__section
         h1 Регистрация аккаунта
-      div(style=pb20)
-        div(style=pb10)
-          +input({ id: "signup-name", type: "text", placeholder: "Имя" })
-        div(style=pb10)
-          +input({ id: "signup-surname", type: "text", placeholder: "Фамилия" })
-        div
-          +radio({ id: "signup-sex-m", name: "signup-sex", value: "male", text: "Мужчина", checked: true })
-          +radio({ id: "signup-sex-f", name: "signup-sex", value: "female", text: "Женщина" })
-      div(style=pb20)
+      .card__section
+        +input({ id: "signup-name", type: "text", placeholder: "Имя" })
+        +input({ id: "signup-surname", type: "text", placeholder: "Фамилия" })
+        +radio({ id: "signup-sex-m", name: "signup-sex", value: "male", text: "Мужчина", checked: true })
+        +radio({ id: "signup-sex-f", name: "signup-sex", value: "female", text: "Женщина" })
+      .card__section
         +masked-input({ id: "signup-birthday-date", title: "Дата рождения", type: "text", placeholder: "ДД.ММ.ГГГГ" })
-      div(style=pb20)
+      .card__section
         h3(style=pb5) Данные для входа в сервис
-        div(style=pb10)
-          +input({ id: "signup-email", type: "email", placeholder: "Email" })
-        div(style=pb10)
-          +input({ id: "signup-password", type: "password", placeholder: "Пароль" })
-        div
-          +checkbox({ id: "signup-subscribe", text: "Получать спецпредложения", checked: false, toggle: true })
-      div(style=pb30)
+        +input({ id: "signup-email", type: "email", placeholder: "Email" })
+        +input({ id: "signup-password", type: "password", placeholder: "Пароль" })
+        +checkbox({ id: "signup-subscribe", text: "Получать спецпредложения", checked: false, toggle: true })
+      .card__section(style=pb30)
         +button({ id: "signup-submit", type: "full", text: "перейти к оплате", submit: true })
       div(style="display: flex; justify-content: space-between")
         span.signup-card__bottom-text Уже есть аккаунт на Toxin
