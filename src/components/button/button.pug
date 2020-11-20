@@ -4,7 +4,8 @@ mixin button({ id, type, text, disabled, submit })
     var modSubmit = ((submit) ? " button--submit" : "")
     var mods = "button--" + type + modActive + modSubmit
   button.button(id=id, class=mods)
-    .button__content= text
-    if submit
-      i.material-icons arrow_forward
+    .button__content
+      .button__text= text
+      if submit
+        i.material-icons arrow_forward
     
