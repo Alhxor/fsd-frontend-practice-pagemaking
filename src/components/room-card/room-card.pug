@@ -3,26 +3,33 @@ include /components/date-dropdown/date-dropdown.pug
 include /components/options-dropdown/options-dropdown.pug
 include /components/button/button.pug
 
-mixin room-card
+mixin room-card()
   .room-card
     +card({})
       .card__section
-        h1 Найдём номера под ваши пожелания
+        .room-card__header
+          .room-card__room-id
+            span.room-card__numero №
+            span.room-card__number 888
+            span.room-card__type люкс
+          .room-card__cost
+            span.room-card__worth
+            span.room-card__timespan в сутки
       .card__section
         +date-dropdown({
           title: {
             left: "Прибытие",
             right: "Выезд"
           },
-          id: "date-dropdown-10",
-          dataKey: "date-dropdown-10",
+          id: "date-dropdown-11",
+          dataKey: "date-dropdown-11",
           text: "ДД.ММ.ГГГГ"
         })
-      .card__section(style={"padding-bottom": "30px"})
+      .card__section
         +options-dropdown({
           title: "Гости",
-          id: "dropdown-10",
-          dataKey: "dropdown-10",
+          id: "dropdown-11",
+          dataKey: "dropdown-11",
           text: "Сколько гостей",
           plural: "гость,гостя,гостей",
           useControls: true,
@@ -32,5 +39,24 @@ mixin room-card
             {name: "младенцы", value: 0}
           ]
         })
-      +button({ id: "btn-10", type: "full", text: "подобрать номер", submit: true })
-
+      .card__section(style={"padding-bottom": "30px"})
+        ul.room-card__costs
+          li.room-card__feature
+            span 9 990₽ х 4 суток
+            span 39 960₽
+          li.room-card__feature
+            span Сбор за услуги: скидка 2 179₽
+            i.room-card__info i
+            span 0₽
+          li.room-card__feature
+            span Сбор за дополнительные услуги
+            i.room-card__info i
+            span 300₽
+      .card__section
+        .room-card__total
+          span Итого
+          span.room-card__filler
+          span 38 081₽
+      .card__section
+        +button({ id: "btn-11", type: "full", text: "забронировать", submit: true })
+      

@@ -1,0 +1,36 @@
+include /components/common/card/card.pug
+include /components/date-dropdown/date-dropdown.pug
+include /components/options-dropdown/options-dropdown.pug
+include /components/button/button.pug
+
+mixin room-selection-card
+  .room-selection-card
+    +card({})
+      .card__section
+        h1 Найдём номера под ваши пожелания
+      .card__section
+        +date-dropdown({
+          title: {
+            left: "Прибытие",
+            right: "Выезд"
+          },
+          id: "date-dropdown-10",
+          dataKey: "date-dropdown-10",
+          text: "ДД.ММ.ГГГГ"
+        })
+      .card__section(style={"padding-bottom": "30px"})
+        +options-dropdown({
+          title: "Гости",
+          id: "dropdown-10",
+          dataKey: "dropdown-10",
+          text: "Сколько гостей",
+          plural: "гость,гостя,гостей",
+          useControls: true,
+          options: [
+            {name: "взрослые", value: 0}, 
+            {name: "дети", value: 0}, 
+            {name: "младенцы", value: 0}
+          ]
+        })
+      +button({ id: "btn-10", type: "full", text: "подобрать номер", submit: true })
+
