@@ -9,11 +9,11 @@ mixin room-card()
       .card__section
         .room-card__header
           .room-card__room-id
-            span.room-card__numero №
+            span.room-card__numero №&nbsp;
             span.room-card__number 888
             span.room-card__type люкс
           .room-card__cost
-            span.room-card__worth
+            span.room-card__worth 9 990₽&nbsp;
             span.room-card__timespan в сутки
       .card__section
         +date-dropdown({
@@ -42,20 +42,22 @@ mixin room-card()
       .card__section(style={"padding-bottom": "30px"})
         ul.room-card__costs
           li.room-card__feature
-            span 9 990₽ х 4 суток
-            span 39 960₽
+            span.room-card__feature-description 9 990₽ х 4 суток
+            span.room-card__feature-cost 39 960₽
           li.room-card__feature
-            span Сбор за услуги: скидка 2 179₽
-            i.room-card__info i
-            span 0₽
+            span.room-card__feature-description Сбор за услуги: скидка 2 179₽
+            .room-card__filler
+              i.room-card__info
+            span.room-card__feature-cost 0₽
           li.room-card__feature
-            span Сбор за дополнительные услуги
-            i.room-card__info i
-            span 300₽
+            span.room-card__feature-description Сбор за дополнительные услуги
+            .room-card__filler
+              i.room-card__info
+            span.room-card__feature-cost 300₽
       .card__section
         .room-card__total
           span Итого
-          span.room-card__filler
+          span.room-card__filler.room-card__filler--dots
           span 38 081₽
       .card__section
         +button({ id: "btn-11", type: "full", text: "забронировать", submit: true })

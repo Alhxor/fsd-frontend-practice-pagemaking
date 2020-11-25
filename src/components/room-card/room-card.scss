@@ -1,3 +1,112 @@
 .room-card {
-  
+
+  /** HEADER **/
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__room-id {
+    color: $dark100;
+    font-weight: bold;
+  }
+
+  &__numero {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  &__number {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  &__type {
+    color: $primary;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: uppercase;
+  }
+
+  &__cost {
+    color: $dark50;
+    line-height: 18px;
+  }
+
+  &__worth {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &__timespan {
+    font-size: 12px;
+  }
+
+
+  /** COSTS LIST **/
+
+  &__feature {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+  }
+
+  &__feature-description {
+    max-width: 214px;
+    padding-right: 5px;
+  }
+
+  &__info {
+    position: relative;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 20px;
+    height: 20px;
+
+    border: 1px solid $dark25;
+    border-radius: 50%;
+
+    &::after {
+      content: "i";
+      display: table;
+      position: absolute;
+
+      color: $dark25;
+      font-size: 12px;
+      line-height: 14px;
+      font-style: normal;
+      font-weight: bold;
+    }
+  }
+
+  &__filler {
+    flex-grow: 1;
+    height: 19px;
+
+    &--dots {
+      border-style: dotted;
+      border-color: $dark25;
+      border-width: 0 0 1px 0;
+      box-sizing: border-box;
+
+      margin: 0 5px;
+    }
+  }
+
+  /** TOTAL **/
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    color: $dark100;
+    font-size: 19px;
+    line-height: 24px;
+    font-weight: bold;
+  }
 }
