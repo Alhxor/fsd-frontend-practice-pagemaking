@@ -1,0 +1,17 @@
+include /components/common/card/card.pug
+include /components/input/input.pug
+include /components/button/button.pug
+
+mixin login-card
+  .login-card
+    +card({})
+      .card__section
+        h1 Войти
+      .card__section
+        +input({ id: "login-email", type: "email", placeholder: "Email" })
+        +input({ id: "login-password", type: "password", placeholder: "Пароль" })
+      .card__section(style={ "padding-bottom": "30px" })
+        +button({ id: "login-submit", type: "full", text: "войти", submit: true })
+      div(style="display: flex; justify-content: space-between")
+        span.login-card__bottom-text Нет аккаунта на Toxin
+        +button({ id: "login-btn-signup", type: "border", text: "создать" })
