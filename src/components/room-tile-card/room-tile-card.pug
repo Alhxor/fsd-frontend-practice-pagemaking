@@ -1,0 +1,22 @@
+include /components/common/card/card.pug
+include /components/rate-button/rate-button.pug
+
+mixin room-tile-card
+  .room-tile-card
+    +card({ noPadding: true })
+      .room-tile-card__slider
+        .room-tile-card__image
+        .room-tile-card__slider-control
+      .room-tile-card__info
+        .room-card__room-id
+          span.room-tile-card__numero №&nbsp;
+          span.room-tile-card__number 888
+          span.room-tile-cardd__type люкс
+        .room-tile-cardd__cost
+          span.room-tile-card__worth 9 990₽&nbsp;
+          span.room-tile-card__timespan в сутки
+      .room-tile-card__rating
+        +rate-button({ id: "room-tile-card-rating-0", stars: 5 })
+        .room-tile-card__reviews
+          span.room-tile-card__worth 145&nbsp;
+          span.room-tile-card__timespan Отзывов

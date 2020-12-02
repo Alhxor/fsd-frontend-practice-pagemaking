@@ -1,0 +1,19 @@
+.room-tile-card {
+  max-width: 270px;
+
+  &__image {
+    width: 270px;
+    height: 151px;
+  }
+
+  &__info, &__rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__room-id {
+    color: $dark100;
+    font-weight: bold;
+  }
+}
