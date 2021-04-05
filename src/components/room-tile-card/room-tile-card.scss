@@ -1,8 +1,10 @@
+@import "./slider/slider.scss";
+
 .room-tile-card {
   max-width: 270px;
 
-  &__image {
-    width: 270px;
+  &__slider {
+    width: 268px;
     height: 151px;
   }
 

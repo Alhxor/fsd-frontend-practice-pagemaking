@@ -1,0 +1,15 @@
+mixin slider(images)
+  ul.slider
+    each img, i in images
+      -
+        var src = img.src
+        var alt = img.alt
+      //- li.slider__item(class={ "hidden": i > 0 })
+      li.slider__item
+        img.slider__image(src=src, alt=alt)
+
+    .slider__control
+      i.slider__prev
+        span.material-icons expand_more
+      i.slider__next 
+        span.material-icons expand_more
