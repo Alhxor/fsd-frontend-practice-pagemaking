@@ -1,15 +1,24 @@
-mixin slider(images)
-  ul.slider
-    each img, i in images
-      -
-        var src = img.src
-        var alt = img.alt
-      //- li.slider__item(class={ "hidden": i > 0 })
-      li.slider__item
-        img.slider__image(src=src, alt=alt)
-
-    .slider__control
-      i.slider__prev
-        span.material-icons expand_more
-      i.slider__next 
-        span.material-icons expand_more
+mixin slider(id, images)
+  .slider(id=id)
+    ul.slider__list
+      - var maxId = images.length - 1
+      each img, i in images
+        -
+          var src = img.src
+          var alt = img.alt
+          var thisId = id + "-" + i
+          var prevId = i - 1 < 0 ? maxId : i - 1
+          var nextId = i + 1 > maxId ? 0 : i + 1 
+        li.slider__item(id=thisId)
+          img.slider__image(src=src, alt=alt)
+          .slider__arrows
+            a.slider__prev(href="#"+id+"-"+prevId)
+              span.material-icons expand_more
+            a.slider__next(href="#"+id+"-"+nextId)
+              span.material-icons expand_more
+          .slider__dots
+            each _, j in images
+              a.slider__dot(
+                href="#"+id+"-"+j
+                class={"slider__dot--current": i === j}
+              )
