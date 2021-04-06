@@ -1,21 +1,74 @@
 @import "./slider/slider.scss";
 
 .room-tile-card {
-  max-width: 270px;
+  width: 270px;
+  height: 257px;
 
   &__slider {
-    width: 268px;
+    width: 270px;
     height: 151px;
   }
 
-  &__info, &__rating {
+  &__info {
+    height: 106px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  &__numbers, &__rating {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
+  }
+
+  &__separator {
+    width: 230px;
+    height: 1px;
+    background: $dark10;
   }
 
   &__room-id {
     color: $dark100;
     font-weight: bold;
+  }
+
+  &__numero {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  &__number {
+    font-size: 19px;
+    line-height: 24px;
+  }
+
+  &__type {
+    color: $primary;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: uppercase;
+    font-weight: normal;
+  }
+
+  &__cost {
+    color: $dark50;
+    line-height: 18px;
+  }
+
+  &__worth {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &__timespan {
+    font-size: 12px;
+  }
+
+  &__reviews {
+    color: $dark50;
+    font-size: 14px;
+    line-height: 18px;
   }
 }
