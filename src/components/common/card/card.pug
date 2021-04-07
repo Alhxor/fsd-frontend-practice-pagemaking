@@ -1,3 +1,6 @@
-mixin card({ noPadding, style })
-  .card(class={"card--no-padding": noPadding}, style=style)
+mixin card({ noPadding, lightShadow, style })
+  .card(class={
+    "card--no-padding": noPadding,
+    "card--light-shadow": lightShadow
+  }, style=style)
     block
