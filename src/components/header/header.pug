@@ -1,0 +1,25 @@
+include ../button/button.pug
+
+mixin header({ logo, user })
+  .header
+    img.header__logo(src=logo.src, alt=logo.alt)
+    nav.header__navbar
+      ul.header__links
+        li.header__bold О нас
+        li Услуги
+        li Вакансии
+        li Новости
+        li Соглашения
+
+      .header__user
+        if user
+          .header__userinfo
+            span= user.name
+        else
+          .header__unregistered
+            .header__login
+              +button({ id: "btn-login", type: "border", text: "Войти" })
+            .header__register
+              +button({ id: "btn-signup", type: "full", text: "Зарегистрироваться" })
+
+
