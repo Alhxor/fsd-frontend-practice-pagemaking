@@ -22,5 +22,23 @@ div(style="height: 40px")
   +date-picker({id: "card-date-picker", dataKey: "card-date-picker-datakey"})
 div(style="height: 40px")
 
-+room-tile-card({room: 888, lux: true, price: 9900, reviews: 145})
+-
+  var photoSample1 = [
+    {src: "src/assets/samples/room-0.png", alt: "room photo"},
+    {src: "src/assets/samples/room-1.png", alt: "room photo"},
+    {src: "src/assets/samples/room-0.png", alt: "room photo"},
+    {src: "src/assets/samples/room-1.png", alt: "room photo"},
+  ]
+  var photoSample2 = [
+    {src: "src/assets/samples/room-1.png", alt: "room photo"},
+    {src: "src/assets/samples/room-0.png", alt: "room photo"},
+    {src: "src/assets/samples/room-1.png", alt: "room photo"},
+    {src: "src/assets/samples/room-0.png", alt: "room photo"},
+  ]
+
++room-tile-card({ photos: photoSample1, room: 888, lux: true, price: 9900, stars: 5, reviews: 145})
 div(style="height: 40px")
+
++room-tile-card({ photos: photoSample2, room: 840, price: 9900, stars: 4, reviews: 65})
+div(style="height: 40px")
+

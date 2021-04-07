@@ -2,26 +2,19 @@ include /components/common/card/card.pug
 include /components/rate-button/rate-button.pug
 include ./slider/slider.pug
 
-mixin room-tile-card({ room, lux, price, reviews })
+mixin room-tile-card({ photos, room, lux, price, stars, reviews })
   .room-tile-card
     +card({
       noPadding: true,
+      lightShadow: true,
       style: {
         width: "inherit",
         height: "inherit",
-        border: "none",
-        "box-shadow": "0px 10px 20px rgba(31, 32, 65, 0.05)",
         overflow: "hidden"
       }
     })
       .room-tile-card__slider
-        +slider("slider-0",
-        [
-          {src: "src/assets/samples/room-0.png", alt: "room photo"},
-          {src: "src/assets/samples/room-1.png", alt: "room photo"},
-          {src: "src/assets/samples/room-0.png", alt: "room photo"},
-          {src: "src/assets/samples/room-1.png", alt: "room photo"},
-        ])
+        +slider("slider-" + room + "-", photos)
       .room-tile-card__info
         .room-tile-card__numbers
           .room-tile-card__room-id
@@ -33,7 +26,7 @@ mixin room-tile-card({ room, lux, price, reviews })
             span.room-tile-card__timespan в сутки
         .room-tile-card__separator
         .room-tile-card__rating
-          +rate-button({ id: "room-tile-card-rating-0", stars: 5 })
+          +rate-button({ id: "room-tile-card-rating-0", stars: stars })
           .room-tile-card__reviews
             strong #{reviews}&nbsp;
             span Отзывов
