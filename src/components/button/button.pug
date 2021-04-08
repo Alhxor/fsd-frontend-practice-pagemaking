@@ -1,8 +1,9 @@
-mixin button({ id, type, text, disabled, submit })
+mixin button({ id, type, text, disabled, header, submit })
   -
     var modActive = ((disabled) ? " button--disabled" : "")
     var modSubmit = ((submit) ? " button--submit" : "")
-    var mods = "button--" + type + modActive + modSubmit
+    var modHeader = ((header) ? " button--header" : "")
+    var mods = "button--" + type + modActive + modSubmit + modHeader
   button.button(id=id, class=mods)
     .button__content
       .button__text= text

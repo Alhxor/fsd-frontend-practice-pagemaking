@@ -18,8 +18,8 @@ mixin header({ logo, user })
         else
           .header__unregistered
             .header__login
-              +button({ id: "btn-login", type: "border", text: "Войти" })
+              +button({ id: "btn-login", type: "border", text: "Войти", header: true })
             .header__register
-              +button({ id: "btn-signup", type: "full", text: "Зарегистрироваться" })
+              +button({ id: "btn-signup", type: "full", text: "Зарегистрироваться", header: true })
 
 
