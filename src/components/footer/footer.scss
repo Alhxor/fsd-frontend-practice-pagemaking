@@ -1,0 +1,29 @@
+.footer {
+  box-sizing: border-box;
+  width: 1440px;
+  height: 372px;
+  padding: 100px 140px;
+  display: flex;
+  justify-content: space-between;
+
+  &__col {
+    max-width: 260px;
+    box-sizing: border-box;
+    // min-width: 200px;
+    padding-left: 40px;
+
+    &--outer {
+      min-width: 260px;
+    }
+  }
+
+  &__list-item {
+    padding-bottom: 15px;
+  }
+
+  &__link {
+    color: $dark50;
+    text-decoration: inherit;
+    line-height: 17px;
+  }
+}

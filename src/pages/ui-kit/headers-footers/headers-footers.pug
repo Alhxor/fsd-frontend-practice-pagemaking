@@ -1,4 +1,5 @@
 include /components/header/header.pug
+include /components/footer/footer.pug
 
 +header({
   logo: {
@@ -16,5 +17,14 @@ div(style="height: 40px")
   },
   user: {
     name: "Юлий Цезарь"
+  }
+})
+
+div(style="height: 40px")
+
++footer({
+  logo: {
+    src: "src/assets/samples/logo.png",
+    alt: "logo"
   }
 })
