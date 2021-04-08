@@ -5,11 +5,15 @@ mixin header({ logo, user })
     img.header__logo(src=logo.src, alt=logo.alt)
     nav.header__navbar
       ul.header__links
-        li.header__bold О нас
-        li Услуги
-        li Вакансии
-        li Новости
-        li Соглашения
+        li.header__link.header__link--is-bold О нас
+        li.header__link
+          span Услуги
+          span.material-icons expand_more
+        li.header__link Вакансии
+        li.header__link Новости
+        li.header__link
+          span Соглашения
+          span.material-icons expand_more
 
       .header__user
         if user
@@ -21,5 +25,3 @@ mixin header({ logo, user })
               +button({ id: "btn-login", type: "border", text: "Войти", header: true })
             .header__register
               +button({ id: "btn-signup", type: "full", text: "Зарегистрироваться", header: true })
-
-

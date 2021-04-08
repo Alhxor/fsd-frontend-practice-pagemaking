@@ -19,16 +19,18 @@
     color: $dark50;
   }
 
-  &__bold {
-    color: $dark75;
-    font-weight: bold;
-  }
-
   &__links {
     display: flex;
+  }
 
-    & li {
-      margin-left: 20px;
+  &__link {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+
+    &--is-bold {
+      color: $dark75;
+      font-weight: bold;
     }
   }
 
