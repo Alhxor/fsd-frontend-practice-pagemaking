@@ -1,10 +1,24 @@
 .footer {
-  box-sizing: border-box;
-  width: 1440px;
-  height: 372px;
-  padding: 100px 140px;
-  display: flex;
-  justify-content: space-between;
+  &__columns {
+    box-sizing: border-box;
+    width: 1440px;
+    height: 372px;
+    padding: 100px 140px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__copyright {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    border-top: 1px solid gray;
+    box-sizing: border-box;
+    width: 1440px;
+    height: 70px;
+    padding: 0 140px
+  }
 
   &__col {
     max-width: 260px;
@@ -23,5 +37,21 @@
     color: $dark50;
     text-decoration: inherit;
     line-height: 17px;
+  }
+
+  &__icon {
+    margin-left: 20px;
+    font-size: 24px;
+    line-height: 24px;
+    color: $primary; // fallback
+
+    @supports (-webkit-text-fill-color: transparent) and
+    ((background-clip: text) or (-webkit-background-clip: text)) {
+      background: linear-gradient($primary, $primary-gradient);
+      background: -webkit-linear-gradient($primary, $primary-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   }
 }
